@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class TripDataAdapter extends ArrayAdapter<TripData> {
+public class TripDataAdapter extends ArrayAdapter<Trip> {
 
     public TripDataAdapter(Context _c){
         super(_c,-1);
@@ -19,13 +19,13 @@ public class TripDataAdapter extends ArrayAdapter<TripData> {
             _convertView = inflater.inflate(R.layout.list_trip, null);
 
         }
-        TripData data = getItem(_position);
+        Trip data = getItem(_position);
 
         TextView tv = null;
         tv = (TextView)_convertView.findViewById(R.id.list_trip_textView_trip_title);
         tv.setText(data.getTripTitle());
-     //   tv = (TextView)_convertView.findViewById(R.id.list_trip_textView_car);
-     //   tv.setText(data.getCar());
+        tv = (TextView)_convertView.findViewById(R.id.list_trip_textView_car);
+        tv.setText(data.getCar());
 
         return _convertView;
     }
