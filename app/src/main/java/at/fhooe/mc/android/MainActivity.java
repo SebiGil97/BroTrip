@@ -3,21 +3,9 @@ package at.fhooe.mc.android;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Queue;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 public static final String TAG = "BroTrip";
@@ -53,7 +41,7 @@ public static final String TAG = "BroTrip";
     public void onClick(View _v) {
         switch(_v.getId()){
             case R.id.activity_main_button_new_trip : {
-            Intent i = new Intent(this, NewTrip.class);
+            Intent i = new Intent(this, ActivityNewTrip.class);
             startActivity(i);
             } break;
             case R.id.activity_main_button_test_list : {
@@ -61,7 +49,7 @@ public static final String TAG = "BroTrip";
              //   i++;
              //   trip_list.add(trip);
              //   mAdapter.notifyDataSetChanged();
-                Intent i = new Intent(this, ActiveTrip.class);
+                Intent i = new Intent(this, ActivityActiveTrip.class);
                 startActivity(i);
 
             } break;

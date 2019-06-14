@@ -2,14 +2,13 @@ package at.fhooe.mc.android;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class ActiveTrip extends Activity implements View.OnClickListener {
+public class ActivityActiveTrip extends Activity implements View.OnClickListener {
 
     private static final String TAG = "BroTripActiveTrip";
 
@@ -37,13 +36,13 @@ public class ActiveTrip extends Activity implements View.OnClickListener {
         switch(_v.getId()) {
             case R.id.activity_active_trip_shopping: {
                 Log.i(TAG, "activity_active_trip_shopping pressed!");
-                Intent i = new Intent(ActiveTrip.this, NewPurchase.class);
+                Intent i = new Intent(ActivityActiveTrip.this, ActivityPurchase.class);
                 startActivity(i);
             }
             break;
             case R.id.activity_active_trip_refuel: {
                 Log.i(TAG, "activity_active_trip_refuel pressed!");
-                Intent i = new Intent(ActiveTrip.this, Refuel.class);
+                Intent i = new Intent(ActivityActiveTrip.this, ActivityRefuel.class);
                 startActivity(i);
             }
             break;

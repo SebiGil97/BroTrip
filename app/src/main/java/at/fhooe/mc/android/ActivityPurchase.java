@@ -4,11 +4,11 @@ import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class Refuel extends Activity {
+public class ActivityPurchase extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_refuel);
+        setContentView(R.layout.activity_new_purchase);
     }
 }

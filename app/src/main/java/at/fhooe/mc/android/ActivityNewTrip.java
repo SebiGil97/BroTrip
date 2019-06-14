@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import static at.fhooe.mc.android.MainActivity.TAG;
 
-public class NewTrip extends Activity implements View.OnClickListener{
+public class ActivityNewTrip extends Activity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

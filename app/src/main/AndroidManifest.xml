@@ -7,10 +7,10 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity android:name=".NewPurchase"></activity>
-        <activity android:name=".NewTrip" />
-        <activity android:name=".Refuel" />
-        <activity android:name=".ActiveTrip" />
+        <activity android:name=".ActivityPurchase"></activity>
+        <activity android:name=".ActivityNewTrip" />
+        <activity android:name=".ActivityRefuel" />
+        <activity android:name=".ActivityActiveTrip" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
