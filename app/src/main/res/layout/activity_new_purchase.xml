@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewPurchase">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/new_purchase_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="new purchase"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/new_purchase_textView_where"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Where?" />
+
+        <EditText
+            android:id="@+id/new_purchase_edit_text_where"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Shop" />
+
+        <TextView
+            android:id="@+id/new_purchase_textView_paid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="paid" />
+
+        <EditText
+            android:id="@+id/new_purchase_edit_text_paid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:text="price" />
+
+        <Button
+            android:id="@+id/new_purchase_button_save_purchase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SAVE" />
+    </LinearLayout>
+</FrameLayout>
