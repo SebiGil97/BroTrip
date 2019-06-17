@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "71998348066",
+    "firebase_url": "https://brotrip-2655a.firebaseio.com",
+    "project_id": "brotrip-2655a",
+    "storage_bucket": "brotrip-2655a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71998348066:android:df9b61c781b97eaf",
+        "android_client_info": {
+          "package_name": "at.fhooe.mc.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "71998348066-el83qdjuagu2ahft06aelo7js03qqeau.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMQBbyKnWN-EKp3CjW7GZzFh6aiEsIx5o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "71998348066-el83qdjuagu2ahft06aelo7js03qqeau.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
