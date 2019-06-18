@@ -16,18 +16,6 @@ public class Refuel implements Serializable {
         mPayer = _payer;
     }
 
-    public int getDrivenKilometers(){
-        return mDrivenKilometers;
-    }
-
-    public int getCosts(){
-        return mCosts;
-    }
-
-    public Person getPayer(){
-        return mPayer;
-    }
-
     //GetterSetterForFireBase
     public int getmDrivenKilometers() {
         return mDrivenKilometers;

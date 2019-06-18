@@ -20,9 +20,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     public static final String TAG = "BroTrip";
     public int mNumberOfTrips = 0;
-    public String[] mTripList = new String[]{};
     TripDataAdapter adapter;
-
 
 
 
@@ -34,14 +32,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
         Button b = null;
         b = (Button) findViewById(R.id.activity_main_button_new_trip);
         b.setOnClickListener(this);
-        b = (Button) findViewById(R.id.activity_main_button_test_list);
-        b.setOnClickListener(this);
 
 
         //---------- Dynamic List ----------
         final ListView lv = (ListView) findViewById(R.id.activity_main_listView_trips);
-
-        final List<String> TripArrayList = new ArrayList<String>(Arrays.asList(mTripList));
 
         adapter = new TripDataAdapter(this); // which Context and how to use the selfmade adapter
 
@@ -69,12 +63,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 Intent i = new Intent(this, ActivityNewTrip.class);
                 //startActivity(i);
                 startActivityForResult(i, 1);
-            } break;
-
-            case R.id.activity_main_button_test_list : {
-
-
-
             } break;
             default : Log.e(TAG, "unexpected ID encountered");
         }

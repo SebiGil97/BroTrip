@@ -100,6 +100,7 @@ public class ActivityNewTrip extends Activity implements View.OnClickListener{
             case R.id.new_trip_button_save : {
                 Toast.makeText(this, "newTrip--SAVE", Toast.LENGTH_SHORT).show();
 
+                /*--------- get Strings from ediText-Fields ----------*/
                 EditText title = (EditText)findViewById(R.id.new_trip_editText_triptitle);
                 String tripTitle = title.getText().toString();
                 EditText car = (EditText)findViewById(R.id.new_trip_editText_car);
