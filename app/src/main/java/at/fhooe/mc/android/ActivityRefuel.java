@@ -22,12 +22,12 @@ public class ActivityRefuel extends Activity implements View.OnClickListener, Ad
         setContentView(R.layout.activity_refuel);
 
         //implements load Friends of Trip
-        //----TestStart
+        //----TestStart------------
         nameList=new LinkedList<String>();
         nameList.add("Max");
         nameList.add("Paul");
         nameList.add("Peter");
-        //----TestEND
+        //----TestEND-----------
 
 
 
