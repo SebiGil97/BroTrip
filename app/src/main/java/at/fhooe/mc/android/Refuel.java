@@ -1,6 +1,8 @@
 package at.fhooe.mc.android;
 
-public class Refuel {
+import java.io.Serializable;
+
+public class Refuel implements Serializable {
     private int mDrivenKilometers;
     private int mCosts;
     private Person mPayer;
