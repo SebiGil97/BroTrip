@@ -1,6 +1,8 @@
 package at.fhooe.mc.android;
 
-public class Person {
+import java.io.Serializable;
+
+public class Person implements Serializable {
     private String mName;
     private int mExpenditures; //Ausgaben
 

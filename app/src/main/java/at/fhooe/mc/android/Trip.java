@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Trip {
+public class Trip implements Serializable{
     private String mTripTitle;
     private String mCar;
     private int mMileage;                   // Mileage of the car when the trip starts

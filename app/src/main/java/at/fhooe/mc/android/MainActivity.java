@@ -5,9 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +21,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public static final String TAG = "BroTrip";
     public int mNumberOfTrips = 0;
     public String[] mTripList = new String[]{};
+    TripDataAdapter adapter;
 
 
 
@@ -34,13 +39,25 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
         //---------- Dynamic List ----------
-        ListView lv = (ListView) findViewById(R.id.activity_main_listView_trips);
+        final ListView lv = (ListView) findViewById(R.id.activity_main_listView_trips);
 
         final List<String> TripArrayList = new ArrayList<String>(Arrays.asList(mTripList));
 
-        TripDataAdapter adapter = new TripDataAdapter(this); // which Context and how to use the selfmade adapter
+        adapter = new TripDataAdapter(this); // which Context and how to use the selfmade adapter
 
         lv.setAdapter(adapter);
+
+        lv.setClickable(true);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> _parent, View _view, int _position, long _id) {
+                Trip trip = (Trip) lv.getItemAtPosition(_position);
+                Toast.makeText(MainActivity.this, "clicked " + trip.getTripTitle(), Toast.LENGTH_SHORT).show();
+
+                Intent i = new Intent(MainActivity.this, ActivityActiveTrip.class);
+                startActivity(i);
+            }
+        });
 
     }
 
@@ -50,16 +67,34 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             case R.id.activity_main_button_new_trip : {
                 Intent i = new Intent(this, ActivityNewTrip.class);
-                startActivity(i);
+                //startActivity(i);
+                startActivityForResult(i, 1);
             } break;
 
             case R.id.activity_main_button_test_list : {
 
-                Intent i = new Intent(this, ActivityActiveTrip.class);
-                startActivity(i);
+
 
             } break;
             default : Log.e(TAG, "unexpected ID encountered");
         }
-    }
+    }// switch
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                Trip newTrip = (Trip)data.getExtras().getSerializable("newTripResult");
+                Toast.makeText(this, "added " + newTrip.getTripTitle(), Toast.LENGTH_SHORT).show();
+                adapter.add(newTrip);
+                adapter.notifyDataSetChanged();
+            }
+
+        }
+    }//onActivityResult
+
+
 }
+
