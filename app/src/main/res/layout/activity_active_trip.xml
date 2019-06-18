@@ -36,7 +36,7 @@
                 android:id="@+id/activity_active_trip_refuel"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="0.6"
+                android:layout_weight="0.5"
                 android:text="Refuel" />
         </LinearLayout>
 
@@ -50,7 +50,7 @@
                 android:id="@+id/activity_active_trip_map"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="0.67"
+                android:layout_weight="0.5"
                 android:text="map" />
 
             <Button
@@ -64,9 +64,9 @@
 
         <Button
             android:id="@+id/activity_active_trip_settings"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.1"
+            android:layout_weight="0.05"
             android:text="settings" />
     </LinearLayout>
 </FrameLayout>
