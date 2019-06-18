@@ -38,11 +38,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         final List<String> TripArrayList = new ArrayList<String>(Arrays.asList(mTripList));
 
-        //TripDataAdapter adapter = new TripDataAdapter(this); // which Context and how to use the selfmade adapter
-
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, TripArrayList);
+        TripDataAdapter adapter = new TripDataAdapter(this); // which Context and how to use the selfmade adapter
 
         lv.setAdapter(adapter);
+
     }
 
     @Override
@@ -50,8 +49,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         switch(_v.getId()){
 
             case R.id.activity_main_button_new_trip : {
-            Intent i = new Intent(this, ActivityNewTrip.class);
-            startActivity(i);
+                Intent i = new Intent(this, ActivityNewTrip.class);
+                startActivity(i);
             } break;
 
             case R.id.activity_main_button_test_list : {

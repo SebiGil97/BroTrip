@@ -10,4 +10,16 @@ public class Refuel {
         mCosts = _costs;
         mPayer = _payer;
     }
+
+    public int getDrivenKilometers(){
+        return mDrivenKilometers;
+    }
+
+    public int getCosts(){
+        return mCosts;
+    }
+
+    public Person getPayer(){
+        return mPayer;
+    }
 }
