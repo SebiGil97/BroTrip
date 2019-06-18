@@ -13,6 +13,9 @@ public class Trip implements Serializable{
     private List<Refuel> mRefuels;
     private List<Purchase> mPurchases;
 
+    public Trip() {
+    }
+
     public Trip (String title, String car){
         mTripTitle = title;
         mCar = car;
@@ -74,5 +77,65 @@ public class Trip implements Serializable{
 
     public void addPurchase(Purchase _purchase){
         mPurchases.add(_purchase);
+    }
+
+
+
+    //GetterSetterForFireBase
+
+    public String getmTripTitle() {
+        return mTripTitle;
+    }
+
+    public void setmTripTitle(String mTripTitle) {
+        this.mTripTitle = mTripTitle;
+    }
+
+    public String getmCar() {
+        return mCar;
+    }
+
+    public void setmCar(String mCar) {
+        this.mCar = mCar;
+    }
+
+    public int getmMileage() {
+        return mMileage;
+    }
+
+    public void setmMileage(int mMileage) {
+        this.mMileage = mMileage;
+    }
+
+    public int getmNumberOfPersons() {
+        return mNumberOfPersons;
+    }
+
+    public void setmNumberOfPersons(int mNumberOfPersons) {
+        this.mNumberOfPersons = mNumberOfPersons;
+    }
+
+    public List<Person> getmPersons() {
+        return mPersons;
+    }
+
+    public void setmPersons(List<Person> mPersons) {
+        this.mPersons = mPersons;
+    }
+
+    public List<Refuel> getmRefuels() {
+        return mRefuels;
+    }
+
+    public void setmRefuels(List<Refuel> mRefuels) {
+        this.mRefuels = mRefuels;
+    }
+
+    public List<Purchase> getmPurchases() {
+        return mPurchases;
+    }
+
+    public void setmPurchases(List<Purchase> mPurchases) {
+        this.mPurchases = mPurchases;
     }
 }

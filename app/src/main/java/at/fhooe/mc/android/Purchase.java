@@ -12,4 +12,33 @@ public class Purchase implements Serializable {
         mCosts = _costs;
         mPayer = _payer;
     }
+
+    public Purchase() {
+    }
+
+
+    //GetterSetterforFireBase
+    public String getmNameShop() {
+        return mNameShop;
+    }
+
+    public void setmNameShop(String mNameShop) {
+        this.mNameShop = mNameShop;
+    }
+
+    public float getmCosts() {
+        return mCosts;
+    }
+
+    public void setmCosts(float mCosts) {
+        this.mCosts = mCosts;
+    }
+
+    public Person getmPayer() {
+        return mPayer;
+    }
+
+    public void setmPayer(Person mPayer) {
+        this.mPayer = mPayer;
+    }
 }

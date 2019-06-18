@@ -15,6 +15,8 @@ public class Person implements Serializable {
         mExpenditures = 0;
     }
 
+
+
     public String getName(){
         return mName;
     }
@@ -23,6 +25,22 @@ public class Person implements Serializable {
         return mExpenditures;
     }
 
+    //GetterSetterForFirebase
+    public String getmName() {
+        return mName;
+    }
+
+    public void setmName(String mName) {
+        this.mName = mName;
+    }
+
+    public int getmExpenditures() {
+        return mExpenditures;
+    }
+
+    public void setmExpenditures(int mExpenditures) {
+        this.mExpenditures = mExpenditures;
+    }
 
 
 }
