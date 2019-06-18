@@ -4,6 +4,10 @@ public class Person {
     private String mName;
     private int mExpenditures; //Ausgaben
 
+    public Person(){
+
+    }
+
     public Person(String name){
         mName = name;
         mExpenditures = 0;

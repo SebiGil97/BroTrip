@@ -59,6 +59,12 @@
             android:ems="10"
             android:inputType="date" />
 
+        <Spinner
+            android:id="@+id/activity_refuel_pick_friend"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown" />
+
         <Button
             android:id="@+id/activity_refuel_button_save"
             android:layout_width="match_parent"
