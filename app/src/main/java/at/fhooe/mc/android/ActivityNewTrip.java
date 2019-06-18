@@ -61,7 +61,7 @@ public class ActivityNewTrip extends Activity implements View.OnClickListener{
     public void onClick(View _v) {
         switch(_v.getId()){
             case R.id.new_trip_button_add_person : {
-                EditText getName = (EditText) findViewById(R.id.new_trip_button_add_person);
+                EditText getName = (EditText) findViewById(R.id.new_trip_editText_name_person);
 
                 if(mNumberOfPersons < 5) { // only 5 tripper allowed
 
