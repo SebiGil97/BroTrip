@@ -5,7 +5,8 @@ import android.os.Bundle;
 
 import java.util.List;
 
-public class ActivityFriendsStatistic extends AppCompatActivity {
+public class ActivityFriendsStatistic extends AppCompatActivity{
+    Trip currentTrip;               //bekomme ich von Gerry Intent?
     List<Person> friendsList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

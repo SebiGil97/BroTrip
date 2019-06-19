@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Refuel implements Serializable {
     private int mDrivenKilometers;
-    private int mCosts;
+    private float mCosts;
     private Person mPayer;
 
     public Refuel() {
@@ -25,7 +25,7 @@ public class Refuel implements Serializable {
         this.mDrivenKilometers = mDrivenKilometers;
     }
 
-    public int getmCosts() {
+    public float getmCosts() {
         return mCosts;
     }
 

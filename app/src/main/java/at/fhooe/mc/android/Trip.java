@@ -3,6 +3,7 @@ package at.fhooe.mc.android;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 
 public class Trip implements Serializable{
     private String mTripTitle;
@@ -79,7 +80,46 @@ public class Trip implements Serializable{
         mPurchases.add(_purchase);
     }
 
+    public float getCosts(){
+        //Refuel
+        float costs=0;
+        int index=0;
+        while(mRefuels.size()<index){
+            costs=costs+mRefuels.get(index).getmCosts();
+            index++;
+        }
 
+        index=0;
+        while(mPurchases.size()<index){
+            costs=costs+mPurchases.get(index).getmCosts();
+            index++;
+        }
+
+        return costs;
+    }
+
+    //to return Costs from a special Friend
+    public float getCosts(Person friend){
+        //Refuel
+        float costs=0;
+        int index=0;
+        while(mRefuels.size()<index){
+            if(mRefuels.get(index).getmPayer().equals(friend)) {
+                costs = costs + mRefuels.get(index).getmCosts();
+            }
+            index++;
+        }
+
+        index=0;
+        while(mPurchases.size()<index){
+            if(mRefuels.get(index).getmPayer().equals(friend)) {
+                costs = costs + mPurchases.get(index).getmCosts();
+            }
+            index++;
+        }
+
+        return costs;
+    }
 
     //GetterSetterForFireBase
 
