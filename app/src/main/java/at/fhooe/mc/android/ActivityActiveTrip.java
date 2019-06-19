@@ -8,9 +8,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class ActivityActiveTrip extends Activity implements View.OnClickListener {
+import java.io.Serializable;
 
+public class ActivityActiveTrip extends Activity implements View.OnClickListener {
     private static final String TAG = "BroTripActiveTrip";
+
+    Trip currentTrip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,8 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
         b = (Button) findViewById(R.id.activity_active_trip_statistics);
         b.setOnClickListener(this);
 
+        currentTrip = (Trip) getIntent().getExtras().getSerializable("chosenTrip");
+
     }
 
     @Override
@@ -37,13 +42,14 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
             case R.id.activity_active_trip_shopping: {
                 Log.i(TAG, "activity_active_trip_shopping pressed!");
                 Intent i = new Intent(ActivityActiveTrip.this, ActivityPurchase.class);
-                startActivity(i);
+                i.putExtra("purchasePerson", (Serializable)currentTrip.getPersons());
+                startActivityForResult(i, 2);
             }
             break;
             case R.id.activity_active_trip_refuel: {
                 Log.i(TAG, "activity_active_trip_refuel pressed!");
                 Intent i = new Intent(ActivityActiveTrip.this, ActivityRefuel.class);
-                startActivity(i);
+                startActivityForResult(i, 1);
             }
             break;
             case R.id.activity_active_trip_map: {
@@ -68,6 +74,31 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
             break;
             default:
                 Log.e(TAG, "unexpected ID encountered");
-        }
+        }// switch
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                Refuel newRefuel = (Refuel) data.getExtras().getSerializable("newRefuel");
+                Toast.makeText(this, "added new Refuel", Toast.LENGTH_SHORT).show();
+                currentTrip.addRefuel(newRefuel);
+            }
+
+        }
+
+        if (requestCode == 2) {
+            if(resultCode == Activity.RESULT_OK){
+                Purchase newPurchase = (Purchase) data.getExtras().getSerializable("newPurchase");
+                Toast.makeText(this, "added new Purchase at " + newPurchase.getmNameShop(), Toast.LENGTH_SHORT).show();
+                currentTrip.addPurchase(newPurchase);
+            }
+
+        }
+
+
+    }//onActivityResult
 }

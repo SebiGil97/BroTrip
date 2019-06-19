@@ -28,7 +28,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     public static final String TAG = "BroTrip";
     public int mNumberOfTrips = 0;
-    public List<Trip> TripList = new LinkedList<Trip>();
+    public List<Trip> TripList;
     TripDataAdapter adapter;
 
     //Database
@@ -45,6 +45,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         b = (Button) findViewById(R.id.activity_main_button_new_trip);
         b.setOnClickListener(this);
 
+        TripList = new LinkedList<Trip>();
 
         //---------- Dynamic List ----------
         final ListView lv = (ListView) findViewById(R.id.activity_main_listView_trips);
@@ -52,6 +53,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
         adapter = new TripDataAdapter(this); // which Context and how to use the selfmade adapter
 
         lv.setAdapter(adapter);
+
+        for(int i = 0;i < TripList.size();i++){
+            adapter.add(TripList.get(0));
+        }
 
         lv.setClickable(true);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -61,6 +66,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 Toast.makeText(MainActivity.this, "clicked " + trip.getTripTitle(), Toast.LENGTH_SHORT).show();
 
                 Intent i = new Intent(MainActivity.this, ActivityActiveTrip.class);
+                i.putExtra("chosenTrip", trip);
                 startActivity(i);
             }
         });
@@ -88,7 +94,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             case R.id.activity_main_button_new_trip : {
                 Intent i = new Intent(this, ActivityNewTrip.class);
-                //startActivity(i);
                 startActivityForResult(i, 1);
             } break;
             default : Log.e(TAG, "unexpected ID encountered");
@@ -103,6 +108,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             if(resultCode == Activity.RESULT_OK){
                 Trip newTrip = (Trip)data.getExtras().getSerializable("newTripResult");
                 Toast.makeText(this, "added " + newTrip.getTripTitle(), Toast.LENGTH_SHORT).show();
+                //TripList.add(newTrip);
                 adapter.add(newTrip);
                 adapter.notifyDataSetChanged();
             }
@@ -110,13 +116,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
     }//onActivityResult
 
-
     //Firebase
     @Override
     protected void onStop() {
         super.onStop();
         //Save TripList to Firebase
-        myRef.setValue(TripList);
+       // myRef.setValue(TripList); //vorübergehend auskommentiert
     }
 
 }

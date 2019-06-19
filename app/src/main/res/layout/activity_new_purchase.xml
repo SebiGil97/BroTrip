@@ -46,10 +46,16 @@
             android:inputType="numberDecimal"
             android:text="price" />
 
+        <Spinner
+            android:id="@+id/activity_purchase_pick_payer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <Button
             android:id="@+id/new_purchase_button_save_purchase"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="SAVE" />
+
     </LinearLayout>
 </FrameLayout>

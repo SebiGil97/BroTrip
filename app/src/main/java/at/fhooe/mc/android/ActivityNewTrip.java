@@ -108,6 +108,7 @@ public class ActivityNewTrip extends Activity implements View.OnClickListener{
                 EditText mileage = (EditText)findViewById(R.id.new_trip_editText_mileage);
                 Integer tripMileage = Integer.parseInt(mileage.getText().toString());
 
+                /*--------- build Trip-Object ----------*/
                 Trip newTrip = new Trip(tripTitle,tripCar, tripMileage, persons);
 
                 /*--------- return intent ----------*/
