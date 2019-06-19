@@ -11,17 +11,29 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
     public static final String TAG = "BroTrip";
     public int mNumberOfTrips = 0;
+    public List<Trip> TripList = new LinkedList<Trip>();
     TripDataAdapter adapter;
 
+    //Database
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("myTrips");
 
 
     @Override
@@ -53,6 +65,21 @@ public class MainActivity extends Activity implements View.OnClickListener {
             }
         });
 
+        //Restore Trip List from Firebase
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                TripList = dataSnapshot.getValue(new GenericTypeIndicator<List<Trip>>() {});
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
     }
 
     @Override
@@ -83,6 +110,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
     }//onActivityResult
 
+
+    //Firebase
+    @Override
+    protected void onStop() {
+        super.onStop();
+        //Save TripList to Firebase
+        myRef.setValue(TripList);
+    }
 
 }
 
