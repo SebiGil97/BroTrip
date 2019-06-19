@@ -22,10 +22,10 @@
             android:id="@+id/activity_refuel_textView_driven_kilometers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Driven kilometers" />
+            android:text="current mileage" />
 
         <EditText
-            android:id="@+id/activity_refuel_editText_driven_kilometers"
+            android:id="@+id/activity_refuel_editText_current_mileage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
