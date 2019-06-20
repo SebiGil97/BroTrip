@@ -17,13 +17,21 @@
             android:id="@+id/activity_main_listView_trips"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.8" />
+            android:layout_weight="0.8" >
+
+        </ListView>
 
         <Button
             android:id="@+id/activity_main_button_new_trip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="new trip" />
+
+        <Button
+            android:id="@+id/activity_main_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Load" />
 
     </LinearLayout>
 </FrameLayout>

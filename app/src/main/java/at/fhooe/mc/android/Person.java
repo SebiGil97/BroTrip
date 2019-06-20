@@ -1,10 +1,12 @@
 package at.fhooe.mc.android;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Person implements Serializable {
     private String mName;
     private int mExpenditures; //Ausgaben
+
 
     public Person(){
 

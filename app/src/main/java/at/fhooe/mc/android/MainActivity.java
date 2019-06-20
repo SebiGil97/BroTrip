@@ -28,12 +28,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     public static final String TAG = "BroTrip";
     public int mNumberOfTrips = 0;
-    public List<Trip> TripList;
+    public List<Trip> tripList;
     TripDataAdapter adapter;
 
     //Database
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("myTrips");
+    ValueEventListener downloadListener;
+
 
 
     @Override
@@ -44,8 +46,40 @@ public class MainActivity extends Activity implements View.OnClickListener {
         Button b = null;
         b = (Button) findViewById(R.id.activity_main_button_new_trip);
         b.setOnClickListener(this);
+        b = (Button) findViewById(R.id.activity_main_test);
+        b.setOnClickListener(this);
 
-        TripList = new LinkedList<Trip>();
+        tripList = new LinkedList<Trip>();
+
+        //myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        downloadListener =new ValueEventListener() { //addListenerForSingleValueEvent
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                Log.i(TAG, "Load");
+                tripList = dataSnapshot.getValue(new GenericTypeIndicator<List<Trip>>() {});
+                Log.i(TAG, "Load2");
+                for(int i = 0;i < tripList.size();i++){      //
+                    //adapter.add(tripList.get(0));  //
+                    adapter.add(tripList.get(i));  //
+                    Log.i(TAG, "onScreen");
+                }
+
+
+            }
+
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        };
+
+        myRef.addValueEventListener(downloadListener);
+
 
         //---------- Dynamic List ----------
         final ListView lv = (ListView) findViewById(R.id.activity_main_listView_trips);
@@ -54,9 +88,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         lv.setAdapter(adapter);
 
-        for(int i = 0;i < TripList.size();i++){
-            adapter.add(TripList.get(0));
+
+
+        //wiederherstellen von Liste
+        /*
+        for(int i = 0;i < tripList.size();i++){
+            //adapter.add(tripList.get(0));  //wiso speicherst  des immer bei 0???
+            adapter.add(tripList.get(i));  //added jedes listenelement
+            Log.i(TAG, "onScreen");
         }
+        */
 
         lv.setClickable(true);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -71,21 +112,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             }
         });
 
-        //Restore Trip List from Firebase
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                TripList = dataSnapshot.getValue(new GenericTypeIndicator<List<Trip>>() {});
-            }
 
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
     }
 
     @Override
@@ -96,6 +123,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 Intent i = new Intent(this, ActivityNewTrip.class);
                 startActivityForResult(i, 1);
             } break;
+            case R.id.activity_main_test:{
+                //Restore Trip List from Firebase
+
+
+            }break;
             default : Log.e(TAG, "unexpected ID encountered");
         }
     }// switch
@@ -108,21 +140,28 @@ public class MainActivity extends Activity implements View.OnClickListener {
             if(resultCode == Activity.RESULT_OK){
                 Trip newTrip = (Trip)data.getExtras().getSerializable("newTripResult");
                 Toast.makeText(this, "added " + newTrip.getTripTitle(), Toast.LENGTH_SHORT).show();
-                //TripList.add(newTrip);
-                adapter.add(newTrip);
+                tripList.add(newTrip);
+                //myRef.setValue(tripList);
+                //adapter.add(new Trip());  //wiso wird da eine neuer Trip erzeugt
+                adapter.add(newTrip);  //???????
                 adapter.notifyDataSetChanged();
             }
 
         }
     }//onActivityResult
 
+
+
     //Firebase
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onPause() {
+        super.onPause();
         //Save TripList to Firebase
-       // myRef.setValue(TripList); //vorübergehend auskommentiert
+        Log.i(TAG, "Save1");
+        myRef.setValue(tripList);
+        Log.i(TAG, "Save2");
     }
+
 
 }
 
