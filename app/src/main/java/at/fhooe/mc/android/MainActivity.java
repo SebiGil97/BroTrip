@@ -31,7 +31,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public List<Trip> tripList;
     TripDataAdapter adapter;
 
-    //Database
+    // Database
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("myTrips");
     ValueEventListener downloadListener;
