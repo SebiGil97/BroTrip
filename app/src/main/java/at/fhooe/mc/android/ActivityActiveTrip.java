@@ -23,7 +23,15 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
     private static final String TAG = "BroTripActiveTrip";
 
     Trip currentTrip;
+    List<Purchase> purchaseList;
+    List<Refuel> refuelList;
 
+    //firebas
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRefPurchase;
+    ValueEventListener purchaseListener;
+    DatabaseReference myRefRefuel;
+    ValueEventListener refuelListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +50,56 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
         b = (Button) findViewById(R.id.activity_active_trip_statistics);
         b.setOnClickListener(this);
 
+        purchaseList=new LinkedList<Purchase>();
+        refuelList=new LinkedList<Refuel>();
+
         currentTrip = (Trip) getIntent().getExtras().getSerializable("chosenTrip");
+        myRefPurchase = database.getReference(currentTrip.getmTripTitle()+"Purchase");
+        myRefRefuel = database.getReference(currentTrip.getmTripTitle()+"Refuel");
+
+        //firebase Purchase
+        purchaseListener =new ValueEventListener() { //addListenerForSingleValueEvent
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+
+                List<Purchase> purchaseListRestore = dataSnapshot.getValue(new GenericTypeIndicator<List<Purchase>>() {});
+                if(purchaseListRestore!=null){
+                    purchaseList=purchaseListRestore;
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        };
+        myRefPurchase.addListenerForSingleValueEvent(purchaseListener);
+
+        //firebase Refuel
+        refuelListener =new ValueEventListener() { //addListenerForSingleValueEvent
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+
+                List<Refuel> refuelListRestore = dataSnapshot.getValue(new GenericTypeIndicator<List<Refuel>>() {});
+                if(refuelListRestore!=null){
+                    refuelList=refuelListRestore;
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        };
+        myRefRefuel.addListenerForSingleValueEvent(refuelListener);
     }
+
 
     @Override
     public void onClick(View _v) {
@@ -94,7 +150,8 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
             if(resultCode == Activity.RESULT_OK){
                 Refuel newRefuel = (Refuel) data.getExtras().getSerializable("newRefuel");
                 Toast.makeText(this, "added new Refuel", Toast.LENGTH_SHORT).show();
-                currentTrip.addRefuel(newRefuel); // wie gleich her speichern???
+                refuelList.add(newRefuel);
+                myRefRefuel.setValue(refuelList); //save to firebase
             }
         }
 
@@ -102,7 +159,9 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
             if(resultCode == Activity.RESULT_OK){
                 Purchase newPurchase = (Purchase) data.getExtras().getSerializable("newPurchase");
                 Toast.makeText(this, "added new Purchase at " + newPurchase.getmNameShop(), Toast.LENGTH_SHORT).show();
-                currentTrip.addPurchase(newPurchase); // wie gleich her speichern???
+                //currentTrip.addPurchase(newPurchase); //obsolete?
+                purchaseList.add(newPurchase);
+                myRefPurchase.setValue(purchaseList); //save to firebase
             }
         }
 

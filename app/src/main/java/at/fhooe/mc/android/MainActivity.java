@@ -56,13 +56,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                Log.i(TAG, "Load");
-                tripList = dataSnapshot.getValue(new GenericTypeIndicator<List<Trip>>() {});
-                Log.i(TAG, "Load2");
-                for(int i = 0;i < tripList.size();i++){      //
-                    adapter.add(tripList.get(i));  //
-                    Log.i(TAG, "onScreen");
+
+               List<Trip> tripListRestore = dataSnapshot.getValue(new GenericTypeIndicator<List<Trip>>() {});
+                if(tripListRestore!=null){
+                    tripList=tripListRestore;
+                    for(int i = 0;i < tripList.size();i++){      //
+                        adapter.add(tripList.get(i));  //
+                        Log.i(TAG, "onScreen");
+                    }
                 }
+
 
 
             }
