@@ -80,7 +80,7 @@ public class Trip implements Serializable{
         mPurchases.add(_purchase);
     }
 
-    public float getCosts(){
+    public float calculateCosts(){
         //Refuel
         float costs=0;
         int index=0;
@@ -99,7 +99,7 @@ public class Trip implements Serializable{
     }
 
     //to return Costs from a special Friend
-    public float getCosts(Person friend){
+    public float calculateCosts(Person friend){
         //Refuel
         float costs=0;
         int index=0;
