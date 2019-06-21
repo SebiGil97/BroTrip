@@ -27,7 +27,6 @@ import java.util.List;
 public class MainActivity extends Activity implements View.OnClickListener {
 
     public static final String TAG = "BroTrip";
-    public int mNumberOfTrips = 0;
     public List<Trip> tripList;
     TripDataAdapter adapter;
 
@@ -46,8 +45,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         Button b = null;
         b = (Button) findViewById(R.id.activity_main_button_new_trip);
         b.setOnClickListener(this);
-        b = (Button) findViewById(R.id.activity_main_test);
-        b.setOnClickListener(this);
+
 
         tripList = new LinkedList<Trip>();
 
@@ -62,7 +60,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 tripList = dataSnapshot.getValue(new GenericTypeIndicator<List<Trip>>() {});
                 Log.i(TAG, "Load2");
                 for(int i = 0;i < tripList.size();i++){      //
-                    //adapter.add(tripList.get(0));  //
                     adapter.add(tripList.get(i));  //
                     Log.i(TAG, "onScreen");
                 }
@@ -88,17 +85,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         lv.setAdapter(adapter);
 
-
-
-        //wiederherstellen von Liste
-        /*
-        for(int i = 0;i < tripList.size();i++){
-            //adapter.add(tripList.get(0));  //wiso speicherst  des immer bei 0???
-            adapter.add(tripList.get(i));  //added jedes listenelement
-            Log.i(TAG, "onScreen");
-        }
-        */
-
         lv.setClickable(true);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -123,11 +109,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 Intent i = new Intent(this, ActivityNewTrip.class);
                 startActivityForResult(i, 1);
             } break;
-            case R.id.activity_main_test:{
-                //Restore Trip List from Firebase
-
-
-            }break;
             default : Log.e(TAG, "unexpected ID encountered");
         }
     }// switch
@@ -141,9 +122,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 Trip newTrip = (Trip)data.getExtras().getSerializable("newTripResult");
                 Toast.makeText(this, "added " + newTrip.getTripTitle(), Toast.LENGTH_SHORT).show();
                 tripList.add(newTrip);
-                //myRef.setValue(tripList);
-                //adapter.add(new Trip());  //wiso wird da eine neuer Trip erzeugt
-                adapter.add(newTrip);  //???????
+                myRef.setValue(tripList);   //Firebase
+                adapter.add(newTrip);
                 adapter.notifyDataSetChanged();
             }
 
@@ -152,7 +132,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
 
-    //Firebase
+
+
     @Override
     protected void onPause() {
         super.onPause();

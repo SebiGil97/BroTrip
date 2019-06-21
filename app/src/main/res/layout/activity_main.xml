@@ -27,11 +27,5 @@
             android:layout_height="wrap_content"
             android:text="new trip" />
 
-        <Button
-            android:id="@+id/activity_main_test"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Load" />
-
     </LinearLayout>
 </FrameLayout>
