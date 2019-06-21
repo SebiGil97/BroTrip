@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,14 +24,15 @@ public class ActivityRefuel extends Activity implements View.OnClickListener, Ad
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_refuel);
 
-        //implements load Friends of Trip
-        //----TestStart------------
+       //load friends
         nameList=new LinkedList<String>();
-        nameList.add("Max");
-        nameList.add("Paul");
-        nameList.add("Peter");
 
-        //----TestEND-----------
+        ArrayList<Person> persons = (ArrayList<Person>) getIntent().getExtras().getSerializable("purchasePerson");
+
+        for(int index = 0; index < persons.size(); index++){
+            nameList.add(persons.get(index).getName());
+        }
+
 
 
         /*----------------ListSpinner------------*/
@@ -45,6 +47,7 @@ public class ActivityRefuel extends Activity implements View.OnClickListener, Ad
 
         Button b = null;
         b = (Button) findViewById(R.id.activity_refuel_button_save);
+        b.setOnClickListener(this);
     }
 
     @Override

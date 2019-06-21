@@ -114,6 +114,7 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
             case R.id.activity_active_trip_refuel: {
                 Log.i(TAG, "activity_active_trip_refuel pressed!");
                 Intent i = new Intent(ActivityActiveTrip.this, ActivityRefuel.class);
+                i.putExtra("purchasePerson", (Serializable)currentTrip.getmPersons());
                 startActivityForResult(i, 1);
             }
             break;
