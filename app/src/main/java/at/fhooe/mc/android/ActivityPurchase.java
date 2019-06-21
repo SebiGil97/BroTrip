@@ -61,7 +61,7 @@ public class ActivityPurchase extends Activity implements View.OnClickListener, 
                 EditText price = (EditText)findViewById(R.id.new_purchase_edit_text_paid);
                 Integer purchasePrice = Integer.parseInt(price.getText().toString());
                 Spinner payer = (Spinner)findViewById(R.id.activity_purchase_pick_payer);
-                Person purchasePayer = (Person) payer.getSelectedItem();
+                String purchasePayer = (String) payer.getSelectedItem();
 
                 /*--------- build new Refuel-Object ----------*/
                 Purchase newPurchase = new Purchase(purchaseShop, purchasePrice, purchasePayer);

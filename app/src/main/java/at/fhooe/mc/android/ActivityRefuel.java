@@ -57,7 +57,7 @@ public class ActivityRefuel extends Activity implements View.OnClickListener, Ad
                 EditText price = (EditText)findViewById(R.id.acitivity_refuel_editText_price);
                 Integer refuelPrice = Integer.parseInt(price.getText().toString());
                 Spinner payer = (Spinner)findViewById(R.id.activity_refuel_pick_friend);
-                Person refuelPayer = (Person) payer.getSelectedItem();
+                String refuelPayer = (String) payer.getSelectedItem();
 
                 /*--------- build new Refuel-Object ----------*/
                 Refuel newRefuel = new Refuel(refuelMileage, refuelPrice, refuelPayer);

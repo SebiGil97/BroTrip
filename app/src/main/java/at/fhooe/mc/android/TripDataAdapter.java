@@ -39,6 +39,7 @@ public class TripDataAdapter extends ArrayAdapter<Trip> {
             @Override
             public void onClick(View v){
                  Toast.makeText(getContext(), data.getTripTitle() + " options", Toast.LENGTH_SHORT).show();
+
             }
         });
 

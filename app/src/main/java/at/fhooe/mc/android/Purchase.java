@@ -5,9 +5,9 @@ import java.io.Serializable;
 public class Purchase implements Serializable {
     private String mNameShop;
     private float mCosts;
-    private Person mPayer;
+    private String mPayer;
 
-    public Purchase(String _name, float _costs, Person _payer){
+    public Purchase(String _name, float _costs, String _payer){
         mNameShop = _name;
         mCosts = _costs;
         mPayer = _payer;
@@ -34,11 +34,11 @@ public class Purchase implements Serializable {
         this.mCosts = mCosts;
     }
 
-    public Person getmPayer() {
+    public String getmPayer() {
         return mPayer;
     }
 
-    public void setmPayer(Person mPayer) {
+    public void setmPayer(String mPayer) {
         this.mPayer = mPayer;
     }
 }

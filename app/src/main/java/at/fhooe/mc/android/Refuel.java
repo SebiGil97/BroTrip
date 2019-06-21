@@ -5,12 +5,12 @@ import java.io.Serializable;
 public class Refuel implements Serializable {
     private int mDrivenKilometers;
     private float mCosts;
-    private Person mPayer;
+    private String mPayer;
 
     public Refuel() {
     }
 
-    public Refuel(int _drivenKilometers, int _costs, Person _payer){
+    public Refuel(int _drivenKilometers, int _costs, String _payer){
         mDrivenKilometers = _drivenKilometers;
         mCosts = _costs;
         mPayer = _payer;
@@ -33,11 +33,11 @@ public class Refuel implements Serializable {
         this.mCosts = mCosts;
     }
 
-    public Person getmPayer() {
+    public String getmPayer() {
         return mPayer;
     }
 
-    public void setmPayer(Person mPayer) {
+    public void setmPayer(String mPayer) {
         this.mPayer = mPayer;
     }
 }

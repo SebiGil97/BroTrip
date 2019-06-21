@@ -8,12 +8,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
+
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ActivityActiveTrip extends Activity implements View.OnClickListener {
     private static final String TAG = "BroTripActiveTrip";
 
     Trip currentTrip;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +43,6 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
         b.setOnClickListener(this);
 
         currentTrip = (Trip) getIntent().getExtras().getSerializable("chosenTrip");
-
     }
 
     @Override
@@ -42,7 +51,7 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
             case R.id.activity_active_trip_shopping: {
                 Log.i(TAG, "activity_active_trip_shopping pressed!");
                 Intent i = new Intent(ActivityActiveTrip.this, ActivityPurchase.class);
-                i.putExtra("purchasePerson", (Serializable)currentTrip.getPersons());
+                i.putExtra("purchasePerson", (Serializable)currentTrip.getmPersons());
                 startActivityForResult(i, 2);
             }
             break;
@@ -85,18 +94,16 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
             if(resultCode == Activity.RESULT_OK){
                 Refuel newRefuel = (Refuel) data.getExtras().getSerializable("newRefuel");
                 Toast.makeText(this, "added new Refuel", Toast.LENGTH_SHORT).show();
-                currentTrip.addRefuel(newRefuel);
+                currentTrip.addRefuel(newRefuel); // wie gleich her speichern???
             }
-
         }
 
         if (requestCode == 2) {
             if(resultCode == Activity.RESULT_OK){
                 Purchase newPurchase = (Purchase) data.getExtras().getSerializable("newPurchase");
                 Toast.makeText(this, "added new Purchase at " + newPurchase.getmNameShop(), Toast.LENGTH_SHORT).show();
-                currentTrip.addPurchase(newPurchase);
+                currentTrip.addPurchase(newPurchase); // wie gleich her speichern???
             }
-
         }
 
 

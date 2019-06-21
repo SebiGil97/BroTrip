@@ -75,7 +75,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             }
         };
 
-        myRef.addValueEventListener(downloadListener);
+        myRef.addListenerForSingleValueEvent(downloadListener);
 
 
         //---------- Dynamic List ----------
@@ -129,20 +129,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         }
     }//onActivityResult
-
-
-
-
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        //Save TripList to Firebase
-        Log.i(TAG, "Save1");
-        myRef.setValue(tripList);
-        Log.i(TAG, "Save2");
-    }
-
 
 }
 

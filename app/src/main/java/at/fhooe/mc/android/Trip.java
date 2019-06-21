@@ -11,22 +11,12 @@ public class Trip implements Serializable{
     private int mMileage;                   // Mileage of the car when the trip starts
     private int mNumberOfPersons;
     private List<Person> mPersons;
-    private List<Refuel> mRefuels;
-    private List<Purchase> mPurchases;
+    private List<Refuel> mRefuels = new LinkedList<Refuel>();
+    private List<Purchase> mPurchases = new LinkedList<Purchase>();
 
     public Trip() {
     }
 
-    public Trip (String title, String car){
-        mTripTitle = title;
-        mCar = car;
-        mMileage = 0;
-
-        mNumberOfPersons = 0;
-        mPersons = new LinkedList<>();
-        mRefuels = new LinkedList<>();
-        mPurchases = new LinkedList<>();
-    }
 
     public Trip (String title, String car, int _mileage, LinkedList<Person> persons){
         mTripTitle = title;
@@ -35,8 +25,8 @@ public class Trip implements Serializable{
 
         mNumberOfPersons = persons.size();
         mPersons = persons;
-        mRefuels = new LinkedList<>();
-        mPurchases = new LinkedList<>();
+        //mRefuels = new LinkedList<Refuel>();
+        //mPurchases = new LinkedList<Purchase>();
     }
 
     public String getCar() {
@@ -82,6 +72,7 @@ public class Trip implements Serializable{
 
     public float calculateCosts(){
         //Refuel
+        /*
         float costs=0;
         int index=0;
         while(mRefuels.size()<index){
@@ -94,13 +85,15 @@ public class Trip implements Serializable{
             costs=costs+mPurchases.get(index).getmCosts();
             index++;
         }
+        */
+        return 0;
 
-        return costs;
     }
 
     //to return Costs from a special Friend
     public float calculateCosts(Person friend){
         //Refuel
+        /*
         float costs=0;
         int index=0;
         while(mRefuels.size()<index){
@@ -117,8 +110,9 @@ public class Trip implements Serializable{
             }
             index++;
         }
+        */
+        return 0;
 
-        return costs;
     }
 
     //GetterSetterForFireBase
