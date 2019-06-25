@@ -14,12 +14,18 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/list_purchase_textView_shop"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textSize="24sp" />
+                    android:id="@+id/list_purchase_textView_shop"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textSize="24sp"/>
 
+            <TextView
+                    android:text="€"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" android:id="@+id/list_purchase_textView_euro"
+                    android:layout_weight="1"
+                    android:textSize="24sp"/>
             <TextView
                 android:id="@+id/list_purchase_textView_price"
                 android:layout_width="wrap_content"
@@ -30,6 +36,21 @@
 
         </LinearLayout>
 
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:text="paid by "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/list_purchase_textView_paidBy"
+                    android:textSize="18sp"/>
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content" android:id="@+id/list_purchase_textView_payer"
+                    android:layout_weight="1" android:textSize="18sp"/>
+        </LinearLayout>
         <TextView
             android:id="@+id/list_purchase_textView_date"
             android:layout_width="match_parent"

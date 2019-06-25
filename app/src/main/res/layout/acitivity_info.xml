@@ -30,13 +30,11 @@
                 android:layout_weight="1"
                 android:text="shop" />
 
-            <ImageButton
-                android:id="@+id/activity_info_button_refuel_info"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:layout_weight="1"
-                android:src="@mipmap/ic_launcher"
-                android:text="refuel" />
+            <Button
+                    android:text="refuel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp" android:id="@+id/activity_info_button_refuel_info"
+                    android:layout_weight="1"/>
 
             <ImageButton
                 android:id="@+id/imageButton"

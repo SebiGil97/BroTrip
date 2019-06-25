@@ -1,19 +1,22 @@
 package at.fhooe.mc.android;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Refuel implements Serializable {
     private int mDrivenKilometers;
     private float mCosts;
     private String mPayer;
+    private Date mDate;
 
     public Refuel() {
     }
 
-    public Refuel(int _drivenKilometers, int _costs, String _payer){
+    public Refuel(int _drivenKilometers, int _costs, String _payer, Date _date){
         mDrivenKilometers = _drivenKilometers;
         mCosts = _costs;
         mPayer = _payer;
+        mDate = _date;
     }
 
     //GetterSetterForFireBase
@@ -39,5 +42,13 @@ public class Refuel implements Serializable {
 
     public void setmPayer(String mPayer) {
         this.mPayer = mPayer;
+    }
+
+    public Date getmDate() {
+        return mDate;
+    }
+
+    public void setmDate(Date mDate) {
+        this.mDate = mDate;
     }
 }

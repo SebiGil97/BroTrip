@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -67,7 +68,7 @@ public class ActivityRefuel extends Activity implements View.OnClickListener, Ad
                 String refuelPayer = (String) payer.getSelectedItem();
 
                 /*--------- build new Refuel-Object ----------*/
-                Refuel newRefuel = new Refuel(refuelMileage, refuelPrice, refuelPayer);
+                Refuel newRefuel = new Refuel(refuelMileage, refuelPrice, refuelPayer, new Date());
 
                 /* ---------- return Intent (Refuel-Object) ---------- */
                 Intent returnIntent = new Intent();

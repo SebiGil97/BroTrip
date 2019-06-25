@@ -45,8 +45,8 @@ public class Trip implements Serializable{
         return mNumberOfPersons;
     }
 
-    public List<Person> getPersons(){
-        return mPersons;
+    public LinkedList<Person> getPersons(){
+        return (LinkedList<Person>) mPersons;
     }
 
     public List<Refuel> getRefuels(){

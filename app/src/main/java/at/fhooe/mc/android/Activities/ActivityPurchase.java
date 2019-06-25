@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -68,7 +69,7 @@ public class ActivityPurchase extends Activity implements View.OnClickListener, 
                 String purchasePayer = (String) payer.getSelectedItem();
 
                 /*--------- build new Refuel-Object ----------*/
-                Purchase newPurchase = new Purchase(purchaseShop, purchasePrice, purchasePayer);
+                Purchase newPurchase = new Purchase(purchaseShop, purchasePrice, purchasePayer, new Date());
                 Toast.makeText(this, "Purchase " + newPurchase.getmNameShop(), Toast.LENGTH_SHORT).show();
 
                 /* ---------- return Intent (Refuel-Object) ---------- */

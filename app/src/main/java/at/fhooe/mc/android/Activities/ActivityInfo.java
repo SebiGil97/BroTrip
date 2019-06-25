@@ -1,6 +1,7 @@
 package at.fhooe.mc.android.Activities;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -12,6 +13,7 @@ import android.widget.Button;
 
 import at.fhooe.mc.android.Fragments.FragmentInfoBasic;
 import at.fhooe.mc.android.Fragments.FragmentInfoPurchase;
+import at.fhooe.mc.android.Fragments.FragmentInfoRefuel;
 import at.fhooe.mc.android.R;
 import at.fhooe.mc.android.Trip;
 
@@ -22,7 +24,6 @@ public class ActivityInfo extends Activity implements View.OnClickListener {
     private static final String VALUE_KEY = "ActivityInfoTripTitle";
 
     Trip currentTrip;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +36,8 @@ public class ActivityInfo extends Activity implements View.OnClickListener {
         b.setOnClickListener(this);
         b = findViewById(R.id.activity_info_button_purchases_info);
         b.setOnClickListener(this);
-        //b = findViewById(R.id.activity_info_button_refuel_info);
-        //b.setOnClickListener(this);
+        b = findViewById(R.id.activity_info_button_refuel_info);
+        b.setOnClickListener(this);
 
         currentTrip = (Trip) getIntent().getExtras().getSerializable("infoTrip");
 
@@ -73,7 +74,13 @@ public class ActivityInfo extends Activity implements View.OnClickListener {
                 //fT.addToBackStack(null);
             } break;
             case R.id.activity_info_button_refuel_info : {
+                SharedPreferences.Editor edit = sp.edit(); // erzeugt Editor
+                edit.putString(VALUE_KEY, currentTrip.getTripTitle());
+                edit.commit();
 
+                FragmentTransaction fT = fMgr.beginTransaction();
+                fT.replace(R.id.fragment_container, new FragmentInfoRefuel());
+                fT.commit();
             } break;
             default : Log.e(TAG, "unexpected ID encountered");
         }

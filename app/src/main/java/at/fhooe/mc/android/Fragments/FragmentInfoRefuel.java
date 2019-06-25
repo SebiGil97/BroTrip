@@ -1,5 +1,6 @@
 package at.fhooe.mc.android.Fragments;
 
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -7,39 +8,37 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import android.widget.ListView;
-
-import android.widget.Toast;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.List;
-
 import at.fhooe.mc.android.ListAdapter.InfoPurchaseAdapter;
+import at.fhooe.mc.android.ListAdapter.InfoRefuelAdapter;
 import at.fhooe.mc.android.Purchase;
 import at.fhooe.mc.android.R;
+import at.fhooe.mc.android.Refuel;
+import com.google.firebase.database.*;
+
+import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
 import static at.fhooe.mc.android.Activities.MainActivity.TAG;
 
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class FragmentInfoRefuel extends Fragment {
 
-public class FragmentInfoPurchase extends Fragment {
 
     private static final String SP_KEY = "ActivityInfo-SharedPreferences-Key";
-    public List<Purchase> purchases;
-    InfoPurchaseAdapter adapter;
+    public List<Refuel> refuels;
+    InfoRefuelAdapter adapter;
 
 
     // Database
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     //DatabaseReference myRef = database.getReference("myTrips");
 
-    DatabaseReference myRefPurchase;
-    ValueEventListener purchaseListener;
+    DatabaseReference myRefRefuel;
+    ValueEventListener refuelListener;
 
 
     @Override
@@ -49,21 +48,21 @@ public class FragmentInfoPurchase extends Fragment {
         SharedPreferences sp = this.getActivity().getSharedPreferences(SP_KEY, MODE_PRIVATE);
         String tripTitle = sp.getString("ActivityInfoTripTitle", "undefined"); // holt sich String
 
-        myRefPurchase = database.getReference(tripTitle+"Purchase");
+        myRefRefuel = database.getReference(tripTitle+"Refuel");
 
-        purchaseListener = new ValueEventListener() { //addListenerForSingleValueEvent
+        refuelListener = new ValueEventListener() { //addListenerForSingleValueEvent
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
 
-                List<Purchase> purchasesRestore = dataSnapshot.getValue(new GenericTypeIndicator<List<Purchase>>() {});
-                if(purchasesRestore!=null){
-                    purchases=purchasesRestore;
-                    for(int i = 0;i < purchases.size();i++){      //
-                        adapter.add(purchases.get(i));  //
-                        Log.i(TAG, purchases.get(i).getmNameShop() + "onScreen");
+                List<Refuel> refuelRestore = dataSnapshot.getValue(new GenericTypeIndicator<List<Refuel>>() {});
+                if(refuelRestore!=null){
+                    refuels=refuelRestore;
+                    for(int i = 0;i < refuels.size();i++){      //
+                        adapter.add(refuels.get(i));  //
+                        Log.i(TAG, refuels.get(i).getmPayer() + "onScreen");
                     }
                 }
             }
@@ -76,7 +75,7 @@ public class FragmentInfoPurchase extends Fragment {
             }
         };
 
-        myRefPurchase.addListenerForSingleValueEvent(purchaseListener);
+        myRefRefuel.addListenerForSingleValueEvent(refuelListener);
 
 
 
@@ -87,17 +86,16 @@ public class FragmentInfoPurchase extends Fragment {
     public View onCreateView(LayoutInflater _inflater, ViewGroup _container,
                              Bundle _savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = _inflater.inflate(R.layout.fragment_info_purchase, _container, false);
+        View view = _inflater.inflate(R.layout.fragment_info_refuel, _container, false);
 
         //---------- Dynamic List ----------
-        ListView lv = (ListView) view.findViewById(R.id.fragment_info_purchase_listView);
+        ListView lv = (ListView) view.findViewById(R.id.fragment_info_refuel_listView);
 
-        adapter = new InfoPurchaseAdapter(getActivity());
+        adapter = new InfoRefuelAdapter(getActivity());
 
         lv.setAdapter(adapter);
 
         return view;
     }
-
 
 }
