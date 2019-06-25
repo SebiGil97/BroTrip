@@ -141,7 +141,9 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
             break;
             case R.id.activity_active_trip_persons: {
                 Log.i(TAG, "activity_active_trip_person pressed!");
-                Toast.makeText(this, "persons pressed", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(ActivityActiveTrip.this, ActivityPersons.class);
+                i.putExtra("persons", (Serializable)currentTrip);
+                startActivity(i);
             }
             break;
             case R.id.activity_active_trip_settings: {

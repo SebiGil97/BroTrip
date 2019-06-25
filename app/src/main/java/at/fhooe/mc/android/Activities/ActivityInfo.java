@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import android.widget.ImageButton;
 import at.fhooe.mc.android.Fragments.FragmentInfoBasic;
 import at.fhooe.mc.android.Fragments.FragmentInfoPurchase;
 import at.fhooe.mc.android.Fragments.FragmentInfoRefuel;
@@ -38,6 +39,7 @@ public class ActivityInfo extends Activity implements View.OnClickListener {
         b.setOnClickListener(this);
         b = findViewById(R.id.activity_info_button_refuel_info);
         b.setOnClickListener(this);
+
 
         currentTrip = (Trip) getIntent().getExtras().getSerializable("infoTrip");
 

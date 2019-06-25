@@ -4,12 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.ActivityFriendsStatistic">
-
+    tools:context=".Activities.ActivityPersons">
     <ListView
-        android:id="@+id/activity_friends_statistics_listview"
-        android:layout_width="395dp"
-        android:layout_height="715dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:id="@+id/activity_persons_listView"/>
 </FrameLayout>

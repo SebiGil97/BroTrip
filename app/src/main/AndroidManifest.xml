@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".Activities.ActivityInfo" />
-        <activity android:name=".Activities.ActivityFriendsStatistic" />
+        <activity android:name=".Activities.ActivityPersons" />
         <activity android:name=".Activities.ActivityPurchase" />
         <activity
             android:name=".Activities.ActivityNewTrip"

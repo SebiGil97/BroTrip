@@ -77,9 +77,6 @@ public class FragmentInfoRefuel extends Fragment {
 
         myRefRefuel.addListenerForSingleValueEvent(refuelListener);
 
-
-
-
     }
 
     @Override

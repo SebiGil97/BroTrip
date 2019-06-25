@@ -34,53 +34,53 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.1"
-            android:orientation="horizontal">
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_weight="0.1"
+                android:orientation="horizontal">
 
             <Button
-                android:id="@+id/activity_active_trip_shopping"
-                android:layout_width="140dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:text="shopping" />
+                    android:id="@+id/activity_active_trip_shopping"
+                    android:layout_width="130dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:text="shopping"/>
 
             <Button
-                android:id="@+id/activity_active_trip_refuel"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:text="Refuel" />
+                    android:id="@+id/activity_active_trip_refuel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:text="Refuel"/>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.1"
-            android:orientation="horizontal">
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_weight="0.1"
+                android:orientation="horizontal">
 
             <Button
-                android:id="@+id/activity_active_trip_map"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:text="map" />
+                    android:id="@+id/activity_active_trip_map"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:text="map"/>
 
             <Button
-                android:id="@+id/activity_active_trip_info"
-                android:layout_width="140dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:text="info" />
+                    android:id="@+id/activity_active_trip_info"
+                    android:layout_width="130dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:text="info"/>
 
         </LinearLayout>
 
         <Button
-            android:id="@+id/activity_active_trip_settings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.05"
-            android:text="settings" />
+                android:id="@+id/activity_active_trip_settings"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_weight="0.05"
+                android:text="settings"/>
     </LinearLayout>
 </FrameLayout>

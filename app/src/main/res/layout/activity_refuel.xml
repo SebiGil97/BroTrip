@@ -46,19 +46,6 @@
             android:inputType="textPersonName"
             android:text="€" />
 
-        <TextView
-            android:id="@+id/acitvity_refuel_textView_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Date" />
-
-        <EditText
-            android:id="@+id/activity_refuel_editText_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="date" />
-
         <Spinner
             android:id="@+id/activity_refuel_pick_friend"
             android:layout_width="fill_parent"

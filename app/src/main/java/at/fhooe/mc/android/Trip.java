@@ -1,6 +1,7 @@
 package at.fhooe.mc.android;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
@@ -11,8 +12,8 @@ public class Trip implements Serializable{
     private int mMileage;                   // Mileage of the car when the trip starts
     private int mNumberOfPersons;
     private List<Person> mPersons;
-    private List<Refuel> mRefuels = new LinkedList<Refuel>();
-    private List<Purchase> mPurchases = new LinkedList<Purchase>();
+    //private List<Refuel> mRefuels = new LinkedList<Refuel>();
+    //private List<Purchase> mPurchases = new LinkedList<Purchase>();
 
     public Trip() {
     }
@@ -45,29 +46,14 @@ public class Trip implements Serializable{
         return mNumberOfPersons;
     }
 
-    public LinkedList<Person> getPersons(){
-        return (LinkedList<Person>) mPersons;
+    public List<Person> getPersons(){
+        return mPersons;
     }
 
-    public List<Refuel> getRefuels(){
-        return mRefuels;
-    }
-
-    public List<Purchase> getPurchases(){
-        return mPurchases;
-    }
 
     public void addPerson(Person _person){
        mPersons.add(_person);
        mNumberOfPersons++;
-    }
-
-    public void addRefuel(Refuel _refuel){
-        mRefuels.add(_refuel);
-    }
-
-    public void addPurchase(Purchase _purchase){
-        mPurchases.add(_purchase);
     }
 
     public float calculateCosts(){
@@ -153,23 +139,7 @@ public class Trip implements Serializable{
         return mPersons;
     }
 
-    public void setmPersons(List<Person> mPersons) {
+    public void setmPersons(ArrayList<Person> mPersons) {
         this.mPersons = mPersons;
-    }
-
-    public List<Refuel> getmRefuels() {
-        return mRefuels;
-    }
-
-    public void setmRefuels(List<Refuel> mRefuels) {
-        this.mRefuels = mRefuels;
-    }
-
-    public List<Purchase> getmPurchases() {
-        return mPurchases;
-    }
-
-    public void setmPurchases(List<Purchase> mPurchases) {
-        this.mPurchases = mPurchases;
     }
 }
