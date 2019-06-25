@@ -1,6 +1,7 @@
 package at.fhooe.mc.android.ListAdapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import at.fhooe.mc.android.Person;
 import at.fhooe.mc.android.R;
+import at.fhooe.mc.android.Trip;
 
 import static java.lang.String.valueOf;
 
@@ -30,6 +32,8 @@ public class PersonAdapter extends ArrayAdapter<Person> {
 
         }
 
+
+
         TextView tv = null;
         tv = (TextView)_convertView.findViewById(R.id.list_persons_name);
         tv.setText(valueOf(data.getmName()));
@@ -38,7 +42,7 @@ public class PersonAdapter extends ArrayAdapter<Person> {
         tv = (TextView)_convertView.findViewById(R.id.list_persons_number_purchases);
         // tv.setText(valueOf(data.getmName()));
         tv = (TextView)_convertView.findViewById(R.id.list_persons_difference);
-        // tv.setText(valueOf(data.getmName()));
+         tv.setText(valueOf(data.getmExpenditures()));
 
         return _convertView;
     }

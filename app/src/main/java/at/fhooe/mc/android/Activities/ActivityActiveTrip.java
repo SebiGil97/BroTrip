@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import at.fhooe.mc.android.*;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,20 +21,19 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-import at.fhooe.mc.android.Purchase;
-import at.fhooe.mc.android.R;
-import at.fhooe.mc.android.Refuel;
-import at.fhooe.mc.android.Trip;
-
 public class ActivityActiveTrip extends Activity implements View.OnClickListener {
     private static final String TAG = "BroTripActiveTrip";
 
+    Trip currentTripFirebase;
     Trip currentTrip;
     List<Purchase> purchaseList;
     List<Refuel> refuelList;
+    List<Trip> tripList;
 
     //firebase
     FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRefTrip;
+    ValueEventListener tripListener;
     DatabaseReference myRefPurchase;
     ValueEventListener purchaseListener;
     DatabaseReference myRefRefuel;
@@ -56,15 +56,42 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
         b = (Button) findViewById(R.id.activity_active_trip_info);
         b.setOnClickListener(this);
 
+        tripList = new LinkedList<Trip>();
         purchaseList=new LinkedList<Purchase>();
         refuelList=new LinkedList<Refuel>();
 
         currentTrip = (Trip) getIntent().getExtras().getSerializable("chosenTrip");
+        myRefTrip = database.getReference("myTrips");
         myRefPurchase = database.getReference(currentTrip.getmTripTitle()+"Purchase");
         myRefRefuel = database.getReference(currentTrip.getmTripTitle()+"Refuel");
 
+
         TextView title = (TextView) findViewById(R.id.activity_active_trip_textView_title);
         title.setText(currentTrip.getTripTitle());
+
+        //firebase Trip
+        tripListener = new ValueEventListener() { //addListenerForSingleValueEvent
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+
+                List<Trip> tripListRestore = dataSnapshot.getValue(new GenericTypeIndicator<List<Trip>>() {});
+                if(tripListRestore!=null){
+                    tripList=tripListRestore;
+                    for(int i = 0;i < tripList.size();i++){      //
+                        Toast.makeText(ActivityActiveTrip.this, "test " + tripList.get(i).getTripTitle(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        };
+        myRefRefuel.addListenerForSingleValueEvent(tripListener);
 
         //firebase Purchase
         purchaseListener =new ValueEventListener() { //addListenerForSingleValueEvent
@@ -107,6 +134,14 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
             }
         };
         myRefRefuel.addListenerForSingleValueEvent(refuelListener);
+/*
+        for(int i = 0;i< tripList.size();i++){
+            if(tripList.get(i).getTripTitle() == currentTrip.getTripTitle()){
+                currentTripFirebase = tripList.get(i);
+            }
+        }
+*/
+
     }
 
 
@@ -166,6 +201,15 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
                 Toast.makeText(this, "added new Refuel", Toast.LENGTH_SHORT).show();
                 refuelList.add(newRefuel);
                 myRefRefuel.setValue(refuelList); //save to firebase
+
+                List<Person> p = currentTripFirebase.getmPersons();
+                for(int i = 0;i < p.size();i++){
+                    if(p.get(i).getmName() == newRefuel.getmPayer()){
+                        p.get(i).addRefuel(newRefuel);
+                    }
+                }
+
+                myRefTrip.setValue(tripList);
             }
         }
 
@@ -176,6 +220,9 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
                 //currentTrip.addPurchase(newPurchase); //obsolete?
                 purchaseList.add(newPurchase);
                 myRefPurchase.setValue(purchaseList); //save to firebase
+
+
+
             }
         }
 

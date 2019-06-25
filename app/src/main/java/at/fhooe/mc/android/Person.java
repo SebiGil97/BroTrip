@@ -5,7 +5,11 @@ import java.util.List;
 
 public class Person implements Serializable {
     private String mName;
-    private int mExpenditures; //Ausgaben
+    private double mExpPurchase;
+    private double mNumberPurchase;
+    private double mExpRefuel;
+    private double mNumberRefuel;
+    private double mExpenditures;
 
 
     public Person(){
@@ -18,14 +22,15 @@ public class Person implements Serializable {
     }
 
 
-
     public String getName(){
         return mName;
     }
 
-    public int getExpenditures(){
-        return mExpenditures;
+
+    public void addRefuel(Refuel r){
+        mExpenditures = mExpenditures + r.getmCosts();
     }
+
 
     //GetterSetterForFirebase
     public String getmName() {
@@ -36,13 +41,43 @@ public class Person implements Serializable {
         this.mName = mName;
     }
 
-    public int getmExpenditures() {
+    public double getmExpPurchase() {
+        return mExpPurchase;
+    }
+
+    public void setmExpPurchase(double mExpPurchase) {
+        this.mExpPurchase = mExpPurchase;
+    }
+
+    public double getmNumberPurchase() {
+        return mNumberPurchase;
+    }
+
+    public void setmNumberPurchase(double mNumberPurchase) {
+        this.mNumberPurchase = mNumberPurchase;
+    }
+
+    public double getmExpRefuel() {
+        return mExpRefuel;
+    }
+
+    public void setmExpRefuel(double mExpRefuel) {
+        this.mExpRefuel = mExpRefuel;
+    }
+
+    public double getmNumberRefuel() {
+        return mNumberRefuel;
+    }
+
+    public void setmNumberRefuel(double mNumberRefuel) {
+        this.mNumberRefuel = mNumberRefuel;
+    }
+
+    public double getmExpenditures() {
         return mExpenditures;
     }
 
-    public void setmExpenditures(int mExpenditures) {
+    public void setmExpenditures(double mExpenditures) {
         this.mExpenditures = mExpenditures;
     }
-
-
 }

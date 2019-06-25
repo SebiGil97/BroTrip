@@ -23,8 +23,6 @@ import static at.fhooe.mc.android.Activities.MainActivity.TAG;
 public class ActivityPersons extends Activity {
     Trip currentTrip;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +41,7 @@ public class ActivityPersons extends Activity {
 
         lv.setAdapter(adapter);
     }
+
 
     //public String get
 
