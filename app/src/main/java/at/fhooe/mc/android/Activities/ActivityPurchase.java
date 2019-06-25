@@ -1,4 +1,4 @@
-package at.fhooe.mc.android;
+package at.fhooe.mc.android.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,6 +16,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
+import at.fhooe.mc.android.Person;
+import at.fhooe.mc.android.Purchase;
+import at.fhooe.mc.android.R;
 
 public class ActivityPurchase extends Activity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     List<String> nameList;

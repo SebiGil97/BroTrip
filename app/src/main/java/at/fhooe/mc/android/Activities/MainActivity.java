@@ -1,12 +1,12 @@
-package at.fhooe.mc.android;
+package at.fhooe.mc.android.Activities;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -18,11 +18,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+
+import at.fhooe.mc.android.R;
+import at.fhooe.mc.android.Trip;
+import at.fhooe.mc.android.ListAdapter.TripDataAdapter;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -41,6 +42,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle _savedInstanceState) {
         super.onCreate(_savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         Button b = null;
         b = (Button) findViewById(R.id.activity_main_button_new_trip);
@@ -65,9 +67,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         Log.i(TAG, "onScreen");
                     }
                 }
-
-
-
             }
 
 
@@ -100,8 +99,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 startActivity(i);
             }
         });
-
-
     }
 
     @Override

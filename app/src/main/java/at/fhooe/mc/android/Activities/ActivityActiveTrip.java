@@ -1,4 +1,4 @@
-package at.fhooe.mc.android;
+package at.fhooe.mc.android.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -19,6 +20,11 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
+import at.fhooe.mc.android.Purchase;
+import at.fhooe.mc.android.R;
+import at.fhooe.mc.android.Refuel;
+import at.fhooe.mc.android.Trip;
+
 public class ActivityActiveTrip extends Activity implements View.OnClickListener {
     private static final String TAG = "BroTripActiveTrip";
 
@@ -26,7 +32,7 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
     List<Purchase> purchaseList;
     List<Refuel> refuelList;
 
-    //firebas
+    //firebase
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRefPurchase;
     ValueEventListener purchaseListener;
@@ -47,7 +53,7 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
         b.setOnClickListener(this);
         b = (Button) findViewById(R.id.activity_active_trip_shopping);
         b.setOnClickListener(this);
-        b = (Button) findViewById(R.id.activity_active_trip_statistics);
+        b = (Button) findViewById(R.id.activity_active_trip_info);
         b.setOnClickListener(this);
 
         purchaseList=new LinkedList<Purchase>();
@@ -56,6 +62,9 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
         currentTrip = (Trip) getIntent().getExtras().getSerializable("chosenTrip");
         myRefPurchase = database.getReference(currentTrip.getmTripTitle()+"Purchase");
         myRefRefuel = database.getReference(currentTrip.getmTripTitle()+"Refuel");
+
+        TextView title = (TextView) findViewById(R.id.activity_active_trip_textView_title);
+        title.setText(currentTrip.getTripTitle());
 
         //firebase Purchase
         purchaseListener =new ValueEventListener() { //addListenerForSingleValueEvent
@@ -123,9 +132,11 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
                 Toast.makeText(this, "map pressed", Toast.LENGTH_SHORT).show();
             }
             break;
-            case R.id.activity_active_trip_statistics: {
+            case R.id.activity_active_trip_info: {
                 Log.i(TAG, "activity_active_trip_statistics pressed!");
-                Toast.makeText(this, "statistics pressed", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(ActivityActiveTrip.this, ActivityInfo.class);
+                i.putExtra("infoTrip", (Serializable)currentTrip);
+                startActivity(i);
             }
             break;
             case R.id.activity_active_trip_persons: {

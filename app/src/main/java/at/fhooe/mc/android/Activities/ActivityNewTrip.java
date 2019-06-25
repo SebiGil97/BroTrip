@@ -1,19 +1,13 @@
-package at.fhooe.mc.android;
+package at.fhooe.mc.android.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.Log;
 import android.view.View;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,7 +16,11 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import static at.fhooe.mc.android.MainActivity.TAG;
+import at.fhooe.mc.android.Person;
+import at.fhooe.mc.android.R;
+import at.fhooe.mc.android.Trip;
+
+import static at.fhooe.mc.android.Activities.MainActivity.TAG;
 
 public class ActivityNewTrip extends Activity implements View.OnClickListener{
 

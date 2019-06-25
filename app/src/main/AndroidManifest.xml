@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="at.fhooe.mc.android">
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
-        <activity android:name=".ActivityFriendsStatistic"></activity>
-        <activity android:name=".ActivityPurchase" />
-        <activity android:name=".ActivityNewTrip" />
-        <activity android:name=".ActivityRefuel" />
-        <activity android:name=".ActivityActiveTrip" />
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Activities.ActivityInfo" />
+        <activity android:name=".Activities.ActivityFriendsStatistic" />
+        <activity android:name=".Activities.ActivityPurchase" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.ActivityNewTrip"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".Activities.ActivityRefuel" />
+        <activity android:name=".Activities.ActivityActiveTrip" />
+        <activity
+            android:name=".Activities.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
