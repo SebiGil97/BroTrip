@@ -79,7 +79,7 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
                 List<Trip> tripListRestore = dataSnapshot.getValue(new GenericTypeIndicator<List<Trip>>() {});
                 if(tripListRestore!=null){
                     tripList=tripListRestore;
-                    for(int i = 0;i < tripList.size();i++){      //
+                    for(int i = 0;i < tripList.size();i++){      //test if tripList is null
                         Toast.makeText(ActivityActiveTrip.this, "test " + tripList.get(i).getTripTitle(), Toast.LENGTH_SHORT).show();
                     }
                 }
