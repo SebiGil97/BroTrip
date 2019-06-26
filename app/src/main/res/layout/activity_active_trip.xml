@@ -19,18 +19,18 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/activity_active_trip_textView_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextView"
-                android:textSize="30sp" />
+                    android:id="@+id/activity_active_trip_textView_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="TextView"
+                    android:textSize="40sp"/>
 
-            <Button
-                android:id="@+id/activity_active_trip_persons"
-                android:layout_width="wrap_content"
-                android:layout_height="70dp"
-                android:text="persons" />
+            <ImageButton
+                    android:src="@drawable/brotrip_icon_group_user_white_dp50"
+                    android:layout_width="0dp"
+                    android:layout_height="70dp" android:id="@+id/activity_active_trip_imageButton_persons"
+                    android:layout_weight="1"/>
         </LinearLayout>
 
         <LinearLayout
@@ -39,19 +39,17 @@
                 android:layout_weight="0.1"
                 android:orientation="horizontal">
 
-            <Button
-                    android:id="@+id/activity_active_trip_shopping"
-                    android:layout_width="130dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.5"
-                    android:text="shopping"/>
+            <ImageButton
+                    android:src="@drawable/brotrip_icon_shopping_white_dp100"
+                    android:layout_width="160dp"
+                    android:layout_height="match_parent" android:id="@+id/activity_active_trip_imageButton_shopping"
+                    android:layout_weight="0.5"/>
 
-            <Button
-                    android:id="@+id/activity_active_trip_refuel"
+            <ImageButton
+                    android:src="@drawable/brotrip_icon_gasstation_white_dp100"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.5"
-                    android:text="Refuel"/>
+                    android:layout_height="match_parent" android:id="@+id/activity_active_trip_imageButton_refuel"
+                    android:layout_weight="0.5"/>
         </LinearLayout>
 
         <LinearLayout
@@ -60,27 +58,23 @@
                 android:layout_weight="0.1"
                 android:orientation="horizontal">
 
-            <Button
-                    android:id="@+id/activity_active_trip_map"
+            <ImageButton
+                    android:src="@drawable/brotrip_icon_map_white_dp100"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.5"
-                    android:text="map"/>
+                    android:layout_height="match_parent" android:id="@+id/activity_active_trip_imageButton_map"
+                    android:layout_weight="0.5"/>
 
-            <Button
-                    android:id="@+id/activity_active_trip_info"
-                    android:layout_width="130dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.5"
-                    android:text="info"/>
+            <ImageButton
+                    android:src="@drawable/brotrip_icon_information_white_dp100"
+                    android:layout_width="160dp"
+                    android:layout_height="match_parent" android:id="@+id/activity_active_trip_imageButton_info"
+                    android:layout_weight="0.5"/>
 
         </LinearLayout>
 
-        <Button
-                android:id="@+id/activity_active_trip_settings"
+        <ImageButton
+                android:src="@drawable/brotrip_icon_settings_white_dp50"
                 android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:layout_weight="0.05"
-                android:text="settings"/>
+                android:layout_height="100dp" android:id="@+id/activity_active_trip_imageButton_settings"/>
     </LinearLayout>
 </FrameLayout>

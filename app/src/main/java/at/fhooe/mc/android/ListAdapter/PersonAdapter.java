@@ -2,6 +2,7 @@ package at.fhooe.mc.android.ListAdapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,13 +37,27 @@ public class PersonAdapter extends ArrayAdapter<Person> {
 
         TextView tv = null;
         tv = (TextView)_convertView.findViewById(R.id.list_persons_name);
-        tv.setText(valueOf(data.getmName()));
+        tv.setText(data.getmName());
         tv = (TextView)_convertView.findViewById(R.id.list_persons_number_refuels);
-       // tv.setText(valueOf(data.getmName()));
+        tv.setText(valueOf(String.format("%.0f", data.getmNumberRefuel())));
+        tv = (TextView)_convertView.findViewById(R.id.list_persons_refuels_total);
+        tv.setText(valueOf(String.format("%.2f", data.getmExpRefuel())));
         tv = (TextView)_convertView.findViewById(R.id.list_persons_number_purchases);
-        // tv.setText(valueOf(data.getmName()));
-        tv = (TextView)_convertView.findViewById(R.id.list_persons_difference);
-         tv.setText(valueOf(data.getmExpenditures()));
+        tv.setText(valueOf(String.format("%.0f", data.getmNumberPurchase())));
+        tv = (TextView)_convertView.findViewById(R.id.list_persons_purchase_total);
+        tv.setText(valueOf(String.format("%.2f", data.getmExpPurchase())));
+        tv = (TextView)_convertView.findViewById(R.id.list_persons_paidTotal);
+        tv.setText(valueOf(String.format("%.2f", data.getmExpenditures())));
+        tv = (TextView)_convertView.findViewById(R.id.list_persons_surplus);
+        double surplus = data.getmSurplus();
+        tv.setText(valueOf(String.format("%.2f", surplus)));
+        if(surplus < 0){
+            tv.setTextColor(Color.RED);
+        }else if(surplus == 0){
+            tv.setTextColor(Color.GRAY);
+        }else{
+            tv.setTextColor(Color.GREEN);
+        }
 
         return _convertView;
     }

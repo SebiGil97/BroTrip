@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content" android:id="@+id/fragment_info_basic_textView_mileage"
                 android:textSize="30sp"/>
         <TextView
-                android:text="Trippers:"
+                android:text="Bro's"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/textView6" android:textSize="24sp"/>
         <ListView

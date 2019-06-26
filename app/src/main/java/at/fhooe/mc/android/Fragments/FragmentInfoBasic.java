@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import android.widget.Toast;
+import at.fhooe.mc.android.Activities.ActivityInfo;
 import at.fhooe.mc.android.ListAdapter.InfoPurchaseAdapter;
 import at.fhooe.mc.android.Person;
 import at.fhooe.mc.android.R;
@@ -31,7 +32,7 @@ import static java.lang.Integer.valueOf;
  */
 public class FragmentInfoBasic extends Fragment {
 
-
+    Trip currentTrip;
     List<String> nameList;
 
     public FragmentInfoBasic() {
@@ -45,29 +46,32 @@ public class FragmentInfoBasic extends Fragment {
         // Inflate the layout for this fragment
         View view = _inflater.inflate(R.layout.fragment_info_basic, _container, false);
 
-        Intent i = getActivity().getIntent();
+        //Intent i = getActivity().getIntent();
 
-        Trip currentTrip = (Trip) i.getSerializableExtra("InfoBasicTrip");
+        currentTrip = (Trip) getActivity().getIntent().getSerializableExtra("InfoBasicTrip");
+        TextView tv;
+        tv = (TextView) view.findViewById(R.id.fragment_info_basic_textView_tripTitle);
+        tv.setText(currentTrip.getmTripTitle());
+        tv = (TextView) view.findViewById(R.id.fragment_info_basic_textView_car);
+        tv.setText(currentTrip.getmCar());
+        tv = (TextView) view.findViewById(R.id.fragment_info_basic_textView_mileage);
+        tv.setText(String.valueOf(String.format("%.1f", currentTrip.getmMileage())));
 
-        TextView textView = (TextView) view.findViewById(R.id.fragment_info_basic_textView_tripTitle);
-        textView.setText(currentTrip.getTripTitle());
-        textView = (TextView) view.findViewById(R.id.fragment_info_basic_textView_car);
-        textView.setText(currentTrip.getmCar());
-        textView = (TextView) view.findViewById(R.id.fragment_info_basic_textView_mileage);
-        //textView.setText(valueOf(currentTrip.getmMileage()));
-
+        /*
         //---------- Dynamic List ----------
         nameList=new LinkedList<String>();
         List<Person> persons = currentTrip.getmPersons();
+        Toast.makeText(getActivity(),currentTrip.getmNumberOfPersons(),Toast.LENGTH_SHORT).show();
 
         for(int index = 0; index < persons.size(); index++){
             nameList.add(persons.get(index).getName());
         }
-        /*
+
         ListView lv = (ListView) view.findViewById(R.id.new_trip_listView_persons);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, nameList);
         lv.setAdapter(adapter);
         */
+
         return view;
     }
 

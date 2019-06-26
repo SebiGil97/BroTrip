@@ -29,7 +29,7 @@ public class InfoRefuelAdapter extends ArrayAdapter<Refuel> {
 
         TextView tv = null;
         tv = (TextView)_convertView.findViewById(R.id.list_refuel_textView_price);
-        tv.setText(valueOf(data.getmCosts()));
+        tv.setText(valueOf(String.format("%.2f", data.getmCosts())));
         tv = (TextView)_convertView.findViewById(R.id.list_refuel_textView_payer);
         tv.setText(data.getmPayer());
         tv = (TextView)_convertView.findViewById(R.id.list_refuel_textView_date);

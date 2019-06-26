@@ -9,15 +9,16 @@ import java.util.ListIterator;
 public class Trip implements Serializable{
     private String mTripTitle;
     private String mCar;
-    private int mMileage;                   // Mileage of the car when the trip starts
+    private double mMileage;                   // Mileage of the car when the trip starts
     private int mNumberOfPersons;
     private List<Person> mPersons;
-    //private List<Refuel> mRefuels = new LinkedList<Refuel>();
-    //private List<Purchase> mPurchases = new LinkedList<Purchase>();
+    private double mExpPurTotal;
+    private double mExpRefTotal;
+    private double mExpTotal;
+
 
     public Trip() {
     }
-
 
     public Trip (String title, String car, int _mileage, LinkedList<Person> persons){
         mTripTitle = title;
@@ -26,9 +27,29 @@ public class Trip implements Serializable{
 
         mNumberOfPersons = persons.size();
         mPersons = persons;
-        //mRefuels = new LinkedList<Refuel>();
-        //mPurchases = new LinkedList<Purchase>();
+        mExpPurTotal = 0;
+        mExpRefTotal = 0;
+        mExpTotal = 0;
     }
+
+    public void addRefuel(Refuel r){
+        mExpRefTotal = mExpRefTotal + r.getmCosts();
+        mExpTotal = mExpTotal + r.getmCosts();
+        calcPersonSurplus(mExpTotal,getmPersons().size());
+    }
+
+    public void addPurchase(Purchase p){
+        mExpPurTotal = mExpPurTotal + p.getmCosts();
+        mExpTotal = mExpTotal + p.getmCosts();
+        calcPersonSurplus(mExpTotal,getmPersons().size());
+    }
+
+    public void calcPersonSurplus(double total, int numPerson){
+        for(int i = 0;i < numPerson;i++){
+            getmPersons().get(i).calcSurplus(total,numPerson);
+        }
+    }
+    //GetterSetterForFireBase
 
     public String getCar() {
         return mCar;
@@ -37,71 +58,6 @@ public class Trip implements Serializable{
     public String getTripTitle() {
         return mTripTitle;
     }
-
-    public int getMileage(){
-        return mMileage;
-    }
-
-    public int getNumberOfPersons(){
-        return mNumberOfPersons;
-    }
-
-    public List<Person> getPersons(){
-        return mPersons;
-    }
-
-
-    public void addPerson(Person _person){
-       mPersons.add(_person);
-       mNumberOfPersons++;
-    }
-
-    public float calculateCosts(){
-        //Refuel
-        /*
-        float costs=0;
-        int index=0;
-        while(mRefuels.size()<index){
-            costs=costs+mRefuels.get(index).getmCosts();
-            index++;
-        }
-
-        index=0;
-        while(mPurchases.size()<index){
-            costs=costs+mPurchases.get(index).getmCosts();
-            index++;
-        }
-        */
-        return 0;
-
-    }
-
-    //to return Costs from a special Friend
-    public float calculateCosts(Person friend){
-        //Refuel
-        /*
-        float costs=0;
-        int index=0;
-        while(mRefuels.size()<index){
-            if(mRefuels.get(index).getmPayer().equals(friend)) {
-                costs = costs + mRefuels.get(index).getmCosts();
-            }
-            index++;
-        }
-
-        index=0;
-        while(mPurchases.size()<index){
-            if(mRefuels.get(index).getmPayer().equals(friend)) {
-                costs = costs + mPurchases.get(index).getmCosts();
-            }
-            index++;
-        }
-        */
-        return 0;
-
-    }
-
-    //GetterSetterForFireBase
 
     public String getmTripTitle() {
         return mTripTitle;
@@ -119,7 +75,7 @@ public class Trip implements Serializable{
         this.mCar = mCar;
     }
 
-    public int getmMileage() {
+    public double getmMileage() {
         return mMileage;
     }
 
@@ -141,5 +97,29 @@ public class Trip implements Serializable{
 
     public void setmPersons(ArrayList<Person> mPersons) {
         this.mPersons = mPersons;
+    }
+
+    public double getmExpPurTotal() {
+        return mExpPurTotal;
+    }
+
+    public void setmExpPurTotal(double mExpPurTotal) {
+        this.mExpPurTotal = mExpPurTotal;
+    }
+
+    public double getmExpRefTotal() {
+        return mExpRefTotal;
+    }
+
+    public void setmExpRefTotal(double mExpRefTotal) {
+        this.mExpRefTotal = mExpRefTotal;
+    }
+
+    public double getmExpTotal() {
+        return mExpTotal;
+    }
+
+    public void setmExpTotal(double mExpTotal) {
+        this.mExpTotal = mExpTotal;
     }
 }

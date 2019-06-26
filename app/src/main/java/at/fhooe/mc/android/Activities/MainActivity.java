@@ -6,10 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.*;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -44,9 +41,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
 
 
-        Button b = null;
-        b = (Button) findViewById(R.id.activity_main_button_new_trip);
-        b.setOnClickListener(this);
+        ImageButton ib = null;
+        ib = (ImageButton) findViewById(R.id.activity_main_imageButton_new_trip);
+        ib.setOnClickListener(this);
 
 
         tripList = new LinkedList<Trip>();
@@ -92,7 +89,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> _parent, View _view, int _position, long _id) {
                 Trip trip = (Trip) lv.getItemAtPosition(_position);
-                Toast.makeText(MainActivity.this, "clicked " + trip.getTripTitle(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "clicked " + trip.getmTripTitle(), Toast.LENGTH_SHORT).show();
 
                 Intent i = new Intent(MainActivity.this, ActivityActiveTrip.class);
                 i.putExtra("chosenTrip", trip);
@@ -105,7 +102,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View _v) {
         switch(_v.getId()){
 
-            case R.id.activity_main_button_new_trip : {
+            case R.id.activity_main_imageButton_new_trip : {
                 Intent i = new Intent(this, ActivityNewTrip.class);
                 startActivityForResult(i, 1);
             } break;
@@ -120,7 +117,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         if (requestCode == 1) {
             if(resultCode == Activity.RESULT_OK){
                 Trip newTrip = (Trip)data.getExtras().getSerializable("newTripResult");
-                Toast.makeText(this, "added " + newTrip.getTripTitle(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "added " + newTrip.getmTripTitle(), Toast.LENGTH_SHORT).show();
                 tripList.add(newTrip);
                 myRef.setValue(tripList);   //Firebase
                 adapter.add(newTrip);

@@ -24,13 +24,23 @@
             android:layout_height="wrap_content"
             android:text="current mileage" />
 
-        <EditText
-            android:id="@+id/activity_refuel_editText_current_mileage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="numberDecimal"
-            android:text="km" />
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <EditText
+                    android:id="@+id/activity_refuel_editText_current_mileage"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="numberDecimal"
+                    android:textSize="18sp"/>
+            <TextView
+                    android:text="km"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" android:id="@+id/textView14" android:layout_weight="1"
+                    android:textSize="18sp"/>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/acitvity_refuel_textView_price"
@@ -38,13 +48,23 @@
             android:layout_height="wrap_content"
             android:text="Price" />
 
-        <EditText
-            android:id="@+id/acitivity_refuel_editText_price"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="€" />
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <EditText
+                    android:id="@+id/acitivity_refuel_editText_price"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:textSize="18sp"/>
+            <TextView
+                    android:text="€"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" android:id="@+id/textView15" android:layout_weight="1"
+                    android:textSize="18sp"/>
+        </LinearLayout>
 
         <Spinner
             android:id="@+id/activity_refuel_pick_friend"

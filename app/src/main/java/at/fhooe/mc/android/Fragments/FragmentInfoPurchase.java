@@ -36,8 +36,6 @@ public class FragmentInfoPurchase extends Fragment {
 
     // Database
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    //DatabaseReference myRef = database.getReference("myTrips");
-
     DatabaseReference myRefPurchase;
     ValueEventListener purchaseListener;
 
@@ -50,7 +48,6 @@ public class FragmentInfoPurchase extends Fragment {
         String tripTitle = sp.getString("ActivityInfoTripTitle", "undefined"); // holt sich String
 
         myRefPurchase = database.getReference(tripTitle+"Purchase");
-
         purchaseListener = new ValueEventListener() { //addListenerForSingleValueEvent
 
             @Override
@@ -91,9 +88,7 @@ public class FragmentInfoPurchase extends Fragment {
 
         //---------- Dynamic List ----------
         ListView lv = (ListView) view.findViewById(R.id.fragment_info_purchase_listView);
-
         adapter = new InfoPurchaseAdapter(getActivity());
-
         lv.setAdapter(adapter);
 
         return view;

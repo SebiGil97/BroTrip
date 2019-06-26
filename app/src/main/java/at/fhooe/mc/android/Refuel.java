@@ -9,6 +9,7 @@ public class Refuel implements Serializable {
     private String mPayer;
     private Date mDate;
 
+
     public Refuel() {
     }
 
@@ -18,6 +19,7 @@ public class Refuel implements Serializable {
         mPayer = _payer;
         mDate = _date;
     }
+
 
     //GetterSetterForFireBase
     public int getmDrivenKilometers() {

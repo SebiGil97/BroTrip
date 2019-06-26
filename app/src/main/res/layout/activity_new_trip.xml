@@ -26,15 +26,14 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/new_trip_editText_triptitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name"
-            android:textSize="18sp" />
-
+                android:id="@+id/new_trip_editText_triptitle"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name"
+                android:textSize="18sp"/>
         <TextView
             android:id="@+id/new_trip_textView_car"
             android:layout_width="wrap_content"
@@ -44,13 +43,13 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/new_trip_editText_car"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
+                android:id="@+id/new_trip_editText_car"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name"/>
 
         <TextView
             android:id="@+id/new_trip_textView_mileage"
@@ -59,12 +58,22 @@
             android:text="Mileage"
             android:textSize="18sp" />
 
-        <EditText
-            android:id="@+id/new_trip_editText_mileage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="number" />
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <EditText
+                    android:id="@+id/new_trip_editText_mileage"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="number"/>
+            <TextView
+                    android:text="km"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content" android:id="@+id/textView12" android:layout_weight="1"
+                    android:textSize="18sp"/>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/new_trip_textView_persons"
@@ -79,26 +88,23 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/new_trip_editText_name_person"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                    android:id="@+id/new_trip_editText_name_person"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Name"/>
 
-            <Button
-                android:id="@+id/new_trip_button_add_person"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.1"
-                android:text="+" />
-
-            <Button
-                android:id="@+id/new_trip_button_remove_person"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.1"
-                android:text="-" />
+            <ImageButton
+                    android:src="@drawable/brotrip_icon_add_user_white_dp50"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content" android:id="@+id/new_trip_imageButton_add_person"
+                    android:layout_weight="1"/>
+            <ImageButton
+                    android:src="@drawable/brotrip_icon_remove_user_white_dp50"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content" android:id="@+id/new_trip_imageButton_remove_person"
+                    android:layout_weight="1"/>
 
         </LinearLayout>
 

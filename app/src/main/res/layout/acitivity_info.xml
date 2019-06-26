@@ -23,17 +23,16 @@
                 android:layout_weight="1"
                 android:text="basic" />
 
-            <Button
-                android:id="@+id/activity_info_button_purchases_info"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:layout_weight="1"
-                android:text="shop" />
-
-            <Button
-                    android:text="refuel"
+            <ImageButton
+                    android:src="@drawable/brotrip_icon_shopping_white_dp50"
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp" android:id="@+id/activity_info_button_refuel_info"
+                    android:layout_height="match_parent" android:id="@+id/activity_info_imageButton_purchases_info"
+                    android:layout_weight="1"/>
+
+            <ImageButton
+                    android:src="@drawable/brotrip_icon_gasstation_white_dp50"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" android:id="@+id/activity_info_imageButton_refuel_info"
                     android:layout_weight="1"/>
 
         </LinearLayout>

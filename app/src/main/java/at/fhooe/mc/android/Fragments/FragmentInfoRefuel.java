@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.ListView;
+import android.widget.Toast;
 import at.fhooe.mc.android.ListAdapter.InfoPurchaseAdapter;
 import at.fhooe.mc.android.ListAdapter.InfoRefuelAdapter;
 import at.fhooe.mc.android.Purchase;
@@ -35,8 +36,6 @@ public class FragmentInfoRefuel extends Fragment {
 
     // Database
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    //DatabaseReference myRef = database.getReference("myTrips");
-
     DatabaseReference myRefRefuel;
     ValueEventListener refuelListener;
 
@@ -46,10 +45,9 @@ public class FragmentInfoRefuel extends Fragment {
         super.onCreate(_savedInstanceState);
 
         SharedPreferences sp = this.getActivity().getSharedPreferences(SP_KEY, MODE_PRIVATE);
-        String tripTitle = sp.getString("ActivityInfoTripTitle", "undefined"); // holt sich String
+        String tripTitle = sp.getString("ActivityInfoTripTitle", "undefined");
 
         myRefRefuel = database.getReference(tripTitle+"Refuel");
-
         refuelListener = new ValueEventListener() { //addListenerForSingleValueEvent
 
             @Override
@@ -59,11 +57,12 @@ public class FragmentInfoRefuel extends Fragment {
 
                 List<Refuel> refuelRestore = dataSnapshot.getValue(new GenericTypeIndicator<List<Refuel>>() {});
                 if(refuelRestore!=null){
-                    refuels=refuelRestore;
+                    refuels = refuelRestore;
+
                     for(int i = 0;i < refuels.size();i++){      //
                         adapter.add(refuels.get(i));  //
-                        Log.i(TAG, refuels.get(i).getmPayer() + "onScreen");
                     }
+
                 }
             }
 
@@ -87,9 +86,7 @@ public class FragmentInfoRefuel extends Fragment {
 
         //---------- Dynamic List ----------
         ListView lv = (ListView) view.findViewById(R.id.fragment_info_refuel_listView);
-
         adapter = new InfoRefuelAdapter(getActivity());
-
         lv.setAdapter(adapter);
 
         return view;

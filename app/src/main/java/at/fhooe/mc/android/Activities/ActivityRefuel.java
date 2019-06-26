@@ -35,7 +35,7 @@ public class ActivityRefuel extends Activity implements View.OnClickListener, Ad
         ArrayList<Person> persons = (ArrayList<Person>) getIntent().getExtras().getSerializable("purchasePerson");
 
         for(int index = 0; index < persons.size(); index++){
-            nameList.add(persons.get(index).getName());
+            nameList.add(persons.get(index).getmName());
         }
 
 

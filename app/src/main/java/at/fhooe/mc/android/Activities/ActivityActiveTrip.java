@@ -2,10 +2,12 @@ package at.fhooe.mc.android.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,17 +46,20 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_active_trip);
 
-        Button b = null;
-        b = (Button) findViewById(R.id.activity_active_trip_map);
-        b.setOnClickListener(this);
-        b = (Button) findViewById(R.id.activity_active_trip_persons);
-        b.setOnClickListener(this);
-        b = (Button) findViewById(R.id.activity_active_trip_refuel);
-        b.setOnClickListener(this);
-        b = (Button) findViewById(R.id.activity_active_trip_shopping);
-        b.setOnClickListener(this);
-        b = (Button) findViewById(R.id.activity_active_trip_info);
-        b.setOnClickListener(this);
+
+        ImageButton ib = null;
+        ib = (ImageButton) findViewById(R.id.activity_active_trip_imageButton_shopping);
+        ib.setOnClickListener(this);
+        ib = (ImageButton) findViewById(R.id.activity_active_trip_imageButton_refuel);
+        ib.setOnClickListener(this);
+        ib = (ImageButton) findViewById(R.id.activity_active_trip_imageButton_info);
+        ib.setOnClickListener(this);
+        ib = (ImageButton) findViewById(R.id.activity_active_trip_imageButton_map);
+        ib.setOnClickListener(this);
+        ib = (ImageButton) findViewById(R.id.activity_active_trip_imageButton_persons);
+        ib.setOnClickListener(this);
+        ib = (ImageButton) findViewById(R.id.activity_active_trip_imageButton_settings);
+        ib.setOnClickListener(this);
 
         tripList = new LinkedList<Trip>();
         purchaseList=new LinkedList<Purchase>();
@@ -68,6 +73,7 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
 
         TextView title = (TextView) findViewById(R.id.activity_active_trip_textView_title);
         title.setText(currentTrip.getTripTitle());
+        title.setTextColor(Color.WHITE);
 
         //firebase Trip
         tripListener = new ValueEventListener() { //addListenerForSingleValueEvent
@@ -79,10 +85,14 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
                 List<Trip> tripListRestore = dataSnapshot.getValue(new GenericTypeIndicator<List<Trip>>() {});
                 if(tripListRestore!=null){
                     tripList=tripListRestore;
-                    for(int i = 0;i < tripList.size();i++){      //test if tripList is null
-                        Toast.makeText(ActivityActiveTrip.this, "test " + tripList.get(i).getTripTitle(), Toast.LENGTH_SHORT).show();
+                }
+
+                for(int i = 0;i < tripList.size();i++){
+                   if(tripList.get(i).getTripTitle().equals(currentTrip.getTripTitle())){
+                        currentTripFirebase = tripList.get(i);
                     }
                 }
+                //Toast.makeText(ActivityActiveTrip.this, "currentTripFirebase: " + currentTripFirebase.getTripTitle(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -91,7 +101,7 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         };
-        myRefRefuel.addListenerForSingleValueEvent(tripListener);
+        myRefTrip.addListenerForSingleValueEvent(tripListener);
 
         //firebase Purchase
         purchaseListener =new ValueEventListener() { //addListenerForSingleValueEvent
@@ -134,54 +144,46 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
             }
         };
         myRefRefuel.addListenerForSingleValueEvent(refuelListener);
-/*
-        for(int i = 0;i< tripList.size();i++){
-            if(tripList.get(i).getTripTitle() == currentTrip.getTripTitle()){
-                currentTripFirebase = tripList.get(i);
-            }
-        }
-*/
 
     }
-
 
     @Override
     public void onClick(View _v) {
         switch(_v.getId()) {
-            case R.id.activity_active_trip_shopping: {
+            case R.id.activity_active_trip_imageButton_shopping: {
                 Log.i(TAG, "activity_active_trip_shopping pressed!");
                 Intent i = new Intent(ActivityActiveTrip.this, ActivityPurchase.class);
                 i.putExtra("purchasePerson", (Serializable)currentTrip.getmPersons());
                 startActivityForResult(i, 2);
             }
             break;
-            case R.id.activity_active_trip_refuel: {
+            case R.id.activity_active_trip_imageButton_refuel: {
                 Log.i(TAG, "activity_active_trip_refuel pressed!");
                 Intent i = new Intent(ActivityActiveTrip.this, ActivityRefuel.class);
                 i.putExtra("purchasePerson", (Serializable)currentTrip.getmPersons());
                 startActivityForResult(i, 1);
             }
             break;
-            case R.id.activity_active_trip_map: {
+            case R.id.activity_active_trip_imageButton_map: {
                 Log.i(TAG, "activity_active_trip_map pressed!");
                 Toast.makeText(this, "map pressed", Toast.LENGTH_SHORT).show();
             }
             break;
-            case R.id.activity_active_trip_info: {
+            case R.id.activity_active_trip_imageButton_info: {
                 Log.i(TAG, "activity_active_trip_statistics pressed!");
                 Intent i = new Intent(ActivityActiveTrip.this, ActivityInfo.class);
                 i.putExtra("infoTrip", (Serializable)currentTrip);
                 startActivity(i);
             }
             break;
-            case R.id.activity_active_trip_persons: {
+            case R.id.activity_active_trip_imageButton_persons: {
                 Log.i(TAG, "activity_active_trip_person pressed!");
                 Intent i = new Intent(ActivityActiveTrip.this, ActivityPersons.class);
-                i.putExtra("persons", (Serializable)currentTrip);
+                i.putExtra("persons", (Serializable)currentTripFirebase);
                 startActivity(i);
             }
             break;
-            case R.id.activity_active_trip_settings: {
+            case R.id.activity_active_trip_imageButton_settings: {
                 Log.i(TAG, "activity_active_trip_settings pressed!");
                 Toast.makeText(this, "settings pressed", Toast.LENGTH_SHORT).show();
             }
@@ -204,11 +206,11 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
 
                 List<Person> p = currentTripFirebase.getmPersons();
                 for(int i = 0;i < p.size();i++){
-                    if(p.get(i).getmName() == newRefuel.getmPayer()){
+                    if(p.get(i).getmName().equals(newRefuel.getmPayer())){
                         p.get(i).addRefuel(newRefuel);
                     }
                 }
-
+                currentTripFirebase.addRefuel(newRefuel);
                 myRefTrip.setValue(tripList);
             }
         }
@@ -217,12 +219,17 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
             if(resultCode == Activity.RESULT_OK){
                 Purchase newPurchase = (Purchase) data.getExtras().getSerializable("newPurchase");
                 Toast.makeText(this, "added new Purchase at " + newPurchase.getmNameShop(), Toast.LENGTH_SHORT).show();
-                //currentTrip.addPurchase(newPurchase); //obsolete?
                 purchaseList.add(newPurchase);
                 myRefPurchase.setValue(purchaseList); //save to firebase
 
-
-
+                List<Person> p = currentTripFirebase.getmPersons();
+                for(int i = 0;i < p.size();i++){
+                    if(p.get(i).getmName().equals(newPurchase.getmPayer())){
+                        p.get(i).addPurchase(newPurchase);
+                    }
+                }
+                currentTripFirebase.addPurchase(newPurchase);
+                myRefTrip.setValue(tripList);
             }
         }
 

@@ -31,13 +31,14 @@ public class ActivityInfo extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acitivity_info);
 
+        ImageButton ib = null;
+        ib = (ImageButton) findViewById(R.id.activity_info_imageButton_purchases_info);
+        ib.setOnClickListener(this);
+        ib = (ImageButton) findViewById(R.id.activity_info_imageButton_refuel_info);
+        ib.setOnClickListener(this);
 
         Button b = null;
         b = findViewById(R.id.activity_info_button_basic_info);
-        b.setOnClickListener(this);
-        b = findViewById(R.id.activity_info_button_purchases_info);
-        b.setOnClickListener(this);
-        b = findViewById(R.id.activity_info_button_refuel_info);
         b.setOnClickListener(this);
 
 
@@ -65,7 +66,7 @@ public class ActivityInfo extends Activity implements View.OnClickListener {
                 fT.replace(R.id.fragment_container, new FragmentInfoBasic());
                 fT.commit();
             } break;
-            case R.id.activity_info_button_purchases_info : {
+            case R.id.activity_info_imageButton_purchases_info : {
                 SharedPreferences.Editor edit = sp.edit(); // erzeugt Editor
                 edit.putString(VALUE_KEY, currentTrip.getTripTitle());
                 edit.commit();
@@ -73,9 +74,8 @@ public class ActivityInfo extends Activity implements View.OnClickListener {
                 FragmentTransaction fT = fMgr.beginTransaction();
                 fT.replace(R.id.fragment_container, new FragmentInfoPurchase());
                 fT.commit();
-                //fT.addToBackStack(null);
             } break;
-            case R.id.activity_info_button_refuel_info : {
+            case R.id.activity_info_imageButton_refuel_info : {
                 SharedPreferences.Editor edit = sp.edit(); // erzeugt Editor
                 edit.putString(VALUE_KEY, currentTrip.getTripTitle());
                 edit.commit();

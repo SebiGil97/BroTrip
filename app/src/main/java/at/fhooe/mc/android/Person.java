@@ -10,6 +10,7 @@ public class Person implements Serializable {
     private double mExpRefuel;
     private double mNumberRefuel;
     private double mExpenditures;
+    private double mSurplus;
 
 
     public Person(){
@@ -22,15 +23,21 @@ public class Person implements Serializable {
     }
 
 
-    public String getName(){
-        return mName;
-    }
-
-
     public void addRefuel(Refuel r){
         mExpenditures = mExpenditures + r.getmCosts();
+        mExpRefuel = mExpRefuel + r.getmCosts();
+        mNumberRefuel++;
     }
 
+    public void addPurchase(Purchase p){
+        mExpenditures = mExpenditures + p.getmCosts();
+        mExpPurchase = mExpPurchase + p.getmCosts();
+        mNumberPurchase++;
+    }
+
+    public void calcSurplus(double total, int numPerson){
+        mSurplus = mExpenditures - total/numPerson;
+    }
 
     //GetterSetterForFirebase
     public String getmName() {
@@ -79,5 +86,13 @@ public class Person implements Serializable {
 
     public void setmExpenditures(double mExpenditures) {
         this.mExpenditures = mExpenditures;
+    }
+
+    public double getmSurplus() {
+        return mSurplus;
+    }
+
+    public void setmSurplus(double surplus) {
+        this.mSurplus = surplus;
     }
 }
