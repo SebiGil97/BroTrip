@@ -34,6 +34,7 @@ public class ActivityNewTrip extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_trip);
 
+        //---------- Buttons ----------
         ImageButton ib = null;
         ib = (ImageButton) findViewById(R.id.new_trip_imageButton_add_person);
         ib.setOnClickListener(this);
