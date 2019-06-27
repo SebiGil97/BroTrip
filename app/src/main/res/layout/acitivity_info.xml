@@ -16,12 +16,13 @@
             android:layout_height="100dp"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/activity_info_button_basic_info"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:layout_weight="1"
-                android:text="basic" />
+            <ImageButton
+                    android:src="@drawable/brotrip_icon_info_white_50"
+                    android:id="@+id/activity_info_imageButton_basic_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:text="basic"/>
 
             <ImageButton
                     android:src="@drawable/brotrip_icon_shopping_white_dp50"
@@ -33,6 +34,11 @@
                     android:src="@drawable/brotrip_icon_gasstation_white_dp50"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" android:id="@+id/activity_info_imageButton_refuel_info"
+                    android:layout_weight="1"/>
+            <ImageButton
+                    android:src="@drawable/brotrip_icon_combo_chart_white_50"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" android:id="@+id/activity_info_imageButton_consumption_info"
                     android:layout_weight="1"/>
 
         </LinearLayout>

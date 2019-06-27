@@ -9,17 +9,24 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activities.ActivityInfo" />
-        <activity android:name=".Activities.ActivityPersons" />
-        <activity android:name=".Activities.ActivityPurchase" />
+        <activity android:name=".Activities.ActivityInfo"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.ActivityPersons"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.ActivityPurchase"
+                  android:screenOrientation="portrait"/>
         <activity
             android:name=".Activities.ActivityNewTrip"
-            android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".Activities.ActivityRefuel" />
-        <activity android:name=".Activities.ActivityActiveTrip" />
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.ActivityRefuel"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.ActivityActiveTrip"
+                  android:screenOrientation="portrait"/>
         <activity
             android:name=".Activities.MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

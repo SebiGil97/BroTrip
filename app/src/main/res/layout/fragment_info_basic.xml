@@ -8,45 +8,65 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="20dp">
 
         <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Triptitle:"
-                android:textSize="24sp"/>
+                android:textSize="18sp"/>
 
         <TextView
                 android:id="@+id/fragment_info_basic_textView_tripTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TextView"
+                android:layout_marginLeft="30dp"
+                android:layout_marginBottom="20dp"
                 android:textSize="30sp"/>
         <TextView
                 android:text="Car:"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/textView2" android:textSize="24sp"/>
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2"
+                android:textSize="18sp"/>
         <TextView
                 android:text="TextView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/fragment_info_basic_textView_car"
+                android:layout_height="wrap_content"
+                android:id="@+id/fragment_info_basic_textView_car"
+                android:layout_marginLeft="30dp"
+                android:layout_marginBottom="20dp"
                 android:textSize="30sp"/>
         <TextView
                 android:text="Mileage (at start):"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/textView4" android:textSize="24sp"/>
+                android:layout_height="wrap_content"
+                android:id="@+id/textView4"
+                android:textSize="18sp"/>
         <TextView
                 android:text="TextView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/fragment_info_basic_textView_mileage"
+                android:layout_height="wrap_content"
+                android:id="@+id/fragment_info_basic_textView_mileage"
+                android:layout_marginLeft="30dp"
+                android:layout_marginBottom="20dp"
                 android:textSize="30sp"/>
         <TextView
-                android:text="Bro's"
+                android:text="Persons"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/textView6" android:textSize="24sp"/>
+                android:layout_height="wrap_content"
+                android:id="@+id/textView6"
+                android:textSize="18sp"/>
         <ListView
                 android:layout_width="match_parent"
-                android:layout_height="300dp"/>
+                android:layout_height="300dp"
+                android:id="@+id/fragment_info_basic_listView_person"
+                android:layout_marginLeft="30dp"/>
     </LinearLayout>
 </FrameLayout>

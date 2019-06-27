@@ -2,10 +2,6 @@
              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                android:paddingBottom="@dimen/activity_vertical_margin"
                 tools:context=".Activities.MainActivity">
 
     <LinearLayout
@@ -17,16 +13,26 @@
         <ListView
                 android:id="@+id/activity_main_listView_trips"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.8">
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp">>
+
 
         </ListView>
-
+        <ImageButton
+                android:src="@drawable/brotrip_icon_trash_white_50"
+                android:text="Button"
+                android:layout_width="100dp"
+                android:layout_height="100dp" android:id="@+id/activity_main_imageButton_delete"
+                android:layout_weight="0" android:visibility="gone"
+                style="?android:attr/borderlessButtonStyle"/>
         <ImageButton
                 android:src="@drawable/brotrip_icon_plus_white_dp100"
                 android:layout_width="100dp"
-                android:layout_height="190dp" android:id="@+id/activity_main_imageButton_new_trip"
-                android:layout_weight="0.8"
+                android:layout_height="100dp" android:id="@+id/activity_main_imageButton_new_trip"
+                android:layout_weight="0"
                 style="?android:attr/borderlessButtonStyle"/>
 
     </LinearLayout>

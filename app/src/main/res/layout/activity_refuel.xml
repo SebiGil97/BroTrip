@@ -4,25 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Refuel">
+    tools:context=".Refuel"
+>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
 
         <TextView
-            android:id="@+id/activity_refuel_textView_titlr"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Refuel"
-            android:textSize="30sp" />
+                android:id="@+id/activity_refuel_textView_titlr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="refuel"
+                android:textSize="24sp"
+                android:layout_marginBottom="20dp"/>
 
         <TextView
             android:id="@+id/activity_refuel_textView_driven_kilometers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="current mileage" />
+            android:text="current mileage"
+            android:textSize="18sp"/>
 
         <LinearLayout
                 android:orientation="horizontal"
@@ -30,47 +37,92 @@
                 android:layout_height="wrap_content">
             <EditText
                     android:id="@+id/activity_refuel_editText_current_mileage"
-                    android:layout_width="250dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="number"
-                    android:textSize="18sp"/>
+                    android:inputType="numberDecimal"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"/>
             <TextView
                     android:text="km"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" android:id="@+id/textView14" android:layout_weight="1"
-                    android:textSize="18sp"/>
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView14"
+                    android:layout_weight="0"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center"/>
         </LinearLayout>
 
         <TextView
-            android:id="@+id/acitvity_refuel_textView_price"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Price" />
-
+                android:id="@+id/acitvity_refuel_textView_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="price" android:textSize="18sp"/>
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <EditText
                     android:id="@+id/acitivity_refuel_editText_price"
-                    android:layout_width="250dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="number|numberDecimal"
-                    android:textSize="18sp"/>
+                    android:inputType="numberDecimal"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"/>
             <TextView
                     android:text="€"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView15"
+                    android:layout_weight="0"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center"/>
+        </LinearLayout>
+        <TextView
+                android:text="liters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/acitvity_refuel_textView_liters" android:textSize="18sp"/>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <EditText
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent" android:id="@+id/textView15" android:layout_weight="1"
-                    android:textSize="18sp"/>
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:id="@+id/acitivity_refuel_editText_liters"
+                    android:inputType="numberDecimal"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"/>
+            <TextView
+                    android:text="l"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView17"
+                    android:layout_weight="0"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center"/>
         </LinearLayout>
 
         <Spinner
             android:id="@+id/activity_refuel_pick_friend"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:spinnerMode="dropdown" />
+            android:spinnerMode="dropdown"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="20dp"/>
 
         <Button
             android:id="@+id/activity_refuel_button_save"

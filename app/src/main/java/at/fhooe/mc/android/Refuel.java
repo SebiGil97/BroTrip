@@ -4,25 +4,31 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Refuel implements Serializable {
-    private int mDrivenKilometers;
+    private float mDrivenKilometers;
     private float mCosts;
+    private float mLiter;
     private String mPayer;
     private Date mDate;
+    boolean delete;
+    boolean readyDelete;
 
 
     public Refuel() {
     }
 
-    public Refuel(int _drivenKilometers, int _costs, String _payer, Date _date){
+    public Refuel(float _drivenKilometers, float _costs, String _payer, Date _date, float _liter){
         mDrivenKilometers = _drivenKilometers;
         mCosts = _costs;
         mPayer = _payer;
         mDate = _date;
+        mLiter = _liter;
+        delete = false;
+        readyDelete = false;
     }
 
 
     //GetterSetterForFireBase
-    public int getmDrivenKilometers() {
+    public float getmDrivenKilometers() {
         return mDrivenKilometers;
     }
 
@@ -34,7 +40,7 @@ public class Refuel implements Serializable {
         return mCosts;
     }
 
-    public void setmCosts(int mCosts) {
+    public void setmCosts(float mCosts) {
         this.mCosts = mCosts;
     }
 
@@ -52,5 +58,29 @@ public class Refuel implements Serializable {
 
     public void setmDate(Date mDate) {
         this.mDate = mDate;
+    }
+
+    public float getmLiter() {
+        return mLiter;
+    }
+
+    public void setmLiter(float mLiter) {
+        this.mLiter = mLiter;
+    }
+
+    public boolean isDelete() {
+        return delete;
+    }
+
+    public void setDelete(boolean delete) {
+        this.delete = delete;
+    }
+
+    public boolean isReadyDelete() {
+        return readyDelete;
+    }
+
+    public void setReadyDelete(boolean readyDelete) {
+        this.readyDelete = readyDelete;
     }
 }

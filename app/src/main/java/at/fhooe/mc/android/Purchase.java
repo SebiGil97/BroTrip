@@ -8,12 +8,16 @@ public class Purchase implements Serializable {
     private float mCosts;
     private String mPayer;
     private Date mDate;
+    boolean delete;
+    boolean readyDelete;
 
     public Purchase(String _name, float _costs, String _payer, Date date){
         mNameShop = _name;
         mCosts = _costs;
         mPayer = _payer;
         mDate = date;
+        delete = false;
+        readyDelete = false;
     }
 
     public Purchase() {
@@ -51,5 +55,21 @@ public class Purchase implements Serializable {
 
     public void setmDate(Date mDate) {
         this.mDate = mDate;
+    }
+
+    public boolean isDelete() {
+        return delete;
+    }
+
+    public void setDelete(boolean delete) {
+        this.delete = delete;
+    }
+
+    public boolean isReadyDelete() {
+        return readyDelete;
+    }
+
+    public void setReadyDelete(boolean readyDelete) {
+        this.readyDelete = readyDelete;
     }
 }

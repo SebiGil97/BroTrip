@@ -4,10 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 
 import at.fhooe.mc.android.R;
 import at.fhooe.mc.android.Trip;
@@ -36,14 +33,29 @@ public class TripDataAdapter extends ArrayAdapter<Trip> {
         tv = (TextView)_convertView.findViewById(R.id.list_trip_textView_car);
         tv.setText(data.getCar());
 
-        Button b = (Button) _convertView.findViewById(R.id.list_trip_button_settings);
-        b.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                 Toast.makeText(getContext(), data.getTripTitle() + " options", Toast.LENGTH_SHORT).show();
 
-            }
-        });
+
+        final CheckBox cb =(CheckBox) _convertView.findViewById(R.id.list_trip_checkBox_delete);
+        cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                                          @Override
+                                          public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                              if(isChecked){
+                                                  data.setReadyDelete(true);
+                                              }else{
+                                                  data.setReadyDelete(false);
+                                              }
+                                          }
+                                      }
+
+        );
+
+        View v1 = _convertView.findViewById(R.id.list_trip_checkBox_delete);
+        if(data.isDelete()){
+            v1.setVisibility(View.VISIBLE);
+            cb.setChecked(false);
+        }else{
+            v1.setVisibility(View.GONE);
+        }
 
         return _convertView;
     }

@@ -94,7 +94,7 @@ public class ActivityNewTrip extends Activity implements View.OnClickListener{
                 }
             } break;
             case R.id.new_trip_button_save : {
-                /*--------- get Strings from ediText-Fields ----------*/
+                //--------- get Strings from ediText-Fields ----------
                 EditText title = (EditText)findViewById(R.id.new_trip_editText_triptitle);
                 String tripTitle = title.getText().toString();
                 EditText car = (EditText)findViewById(R.id.new_trip_editText_car);
@@ -114,7 +114,10 @@ public class ActivityNewTrip extends Activity implements View.OnClickListener{
                 }else {
                     Toast.makeText(this, "new trip saved", Toast.LENGTH_SHORT).show();
 
-                    Integer tripMileage = Integer.parseInt(mileage.getText().toString());
+                    String p = mileage.getText().toString();
+                    changeDotToComma(p);
+                    Float tripMileage = Float.parseFloat(p);
+
                     /*--------- build Trip-Object ----------*/
                     Trip newTrip = new Trip(tripTitle, tripCar, tripMileage, persons);
 
@@ -130,8 +133,12 @@ public class ActivityNewTrip extends Activity implements View.OnClickListener{
         }
     }
 
-
-
-
+    private void changeDotToComma(String s){
+        if(s != null && s != "") {
+            if (s.contains(".")) {
+                s.replace(".", ",");
+            }
+        }
+    }
 
 }

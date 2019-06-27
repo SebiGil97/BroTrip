@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
+             xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              tools:context=".Fragments.FragmentInfoRefuel">
 
     <!-- TODO: Update blank fragment layout -->
-    <ListView
+    <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" android:id="@+id/fragment_info_refuel_listView"/>
+            android:layout_height="match_parent"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="30dp">
+        <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/fragment_info_refuel_listView"
+                android:layout_weight="1"/>
+        <ImageButton
+                android:src="@drawable/brotrip_icon_trash_white_50"
+                android:text="Button"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/fragment_info_refuel_imageButton_delete"
+                android:layout_weight="0"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_gravity="center_horizontal" android:visibility="gone"/>
+    </LinearLayout>
 
 </FrameLayout>

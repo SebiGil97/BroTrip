@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
@@ -31,6 +32,7 @@ public class ActivityPurchase extends Activity implements View.OnClickListener, 
         setContentView(R.layout.activity_new_purchase);
 
         nameList=new LinkedList<String>();
+        nameList.add("select a payer");
 
         ArrayList<Person> persons = (ArrayList<Person>) getIntent().getExtras().getSerializable("purchasePerson");
 
@@ -64,19 +66,33 @@ public class ActivityPurchase extends Activity implements View.OnClickListener, 
                 EditText shop = (EditText)findViewById(R.id.new_purchase_edit_text_where);
                 String purchaseShop = shop.getText().toString();
                 EditText price = (EditText)findViewById(R.id.new_purchase_edit_text_paid);
-                Integer purchasePrice = Integer.parseInt(price.getText().toString());
                 Spinner payer = (Spinner)findViewById(R.id.activity_purchase_pick_payer);
                 String purchasePayer = (String) payer.getSelectedItem();
 
-                /*--------- build new Refuel-Object ----------*/
-                Purchase newPurchase = new Purchase(purchaseShop, purchasePrice, purchasePayer, new Date());
-                Toast.makeText(this, "Purchase " + newPurchase.getmNameShop(), Toast.LENGTH_SHORT).show();
+                //---------- check input ---------
+                if(purchaseShop.isEmpty()){
+                    Toast.makeText(this, "please enter a shop", Toast.LENGTH_SHORT).show();
+                }else if(price.getText().toString().equals("")){
+                    Toast.makeText(this, "please enter a price", Toast.LENGTH_SHORT).show();
+                }else if( purchasePayer.equals("select a payer")){
+                    Toast.makeText(this, "please select a payer", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(this, "new purchase saved", Toast.LENGTH_SHORT).show();
 
-                /* ---------- return Intent (Refuel-Object) ---------- */
-                Intent returnIntent = new Intent();
-                returnIntent.putExtra("newPurchase", newPurchase);
-                setResult(Activity.RESULT_OK,returnIntent);
-                finish();
+                    String p = price.getText().toString();
+                    changeDotToComma(p);
+                    Float purchasePrice = Float.parseFloat(p);
+
+                    /*--------- build new Refuel-Object ----------*/
+                    Purchase newPurchase = new Purchase(purchaseShop, purchasePrice, purchasePayer, new Date());
+                    Toast.makeText(this, "Purchase " + newPurchase.getmNameShop(), Toast.LENGTH_SHORT).show();
+
+                    /* ---------- return Intent (Refuel-Object) ---------- */
+                    Intent returnIntent = new Intent();
+                    returnIntent.putExtra("newPurchase", newPurchase);
+                    setResult(Activity.RESULT_OK, returnIntent);
+                    finish();
+                }
             }break;
         }
     }
@@ -85,11 +101,21 @@ public class ActivityPurchase extends Activity implements View.OnClickListener, 
     public void onItemSelected(AdapterView<?> _parent, View _view, int _position, long _id) {
         String name = _parent.getItemAtPosition(_position).toString();
 
-        Toast.makeText(this, "selected " + name, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "selected " + name, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> _parent) {
         Toast.makeText(this, "Please select friend!", Toast.LENGTH_SHORT).show();
     }
+
+   private void changeDotToComma(String s){
+        if(s != null && s != "") {
+            if (s.contains(".")) {
+                s.replace(".", ",");
+            }
+        }
+   }
+
+
 }

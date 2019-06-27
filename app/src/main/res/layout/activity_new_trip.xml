@@ -9,14 +9,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp">
 
         <TextView
-            android:id="@+id/new_trip_textView_title"
-            android:layout_width="wrap_content"
-            android:layout_height="53dp"
-            android:text="create new trip"
-            android:textSize="24sp" />
+                android:id="@+id/new_trip_textView_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="create new trip"
+                android:layout_marginBottom="20dp"
+                android:textSize="24sp"/>
 
         <TextView
             android:id="@+id/new_trip_textView_triptitle"
@@ -27,12 +32,14 @@
 
         <EditText
                 android:id="@+id/new_trip_editText_triptitle"
-                android:layout_width="250dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Name"
+                android:layout_marginRight="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="15dp"
                 android:textSize="18sp"/>
         <TextView
             android:id="@+id/new_trip_textView_car"
@@ -44,13 +51,15 @@
 
         <EditText
                 android:id="@+id/new_trip_editText_car"
-                android:layout_width="250dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="15dp"
                 android:inputType="textPersonName"
-                android:text="Name"/>
-
+        />
         <TextView
             android:id="@+id/new_trip_textView_mileage"
             android:layout_width="wrap_content"
@@ -64,23 +73,27 @@
                 android:layout_height="wrap_content">
             <EditText
                     android:id="@+id/new_trip_editText_mileage"
-                    android:layout_width="250dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="number"/>
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:inputType="numberDecimal" android:layout_weight="1"/>
             <TextView
+                    android:gravity="center"
                     android:text="km"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content" android:id="@+id/textView12" android:layout_weight="1"
+                    android:layout_width="50dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_height="match_parent" android:id="@+id/textView12" android:layout_weight="0"
                     android:textSize="18sp"/>
         </LinearLayout>
 
         <TextView
-            android:id="@+id/new_trip_textView_persons"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.9"
-            android:text="Names of Tripper" />
+                android:id="@+id/new_trip_textView_persons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.9"
+                android:text="Names of person" android:textSize="18sp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -114,10 +127,10 @@
             android:layout_height="wrap_content" />
 
         <Button
-            android:id="@+id/new_trip_button_save"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="SAVE" />
+                android:id="@+id/new_trip_button_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SAVE" android:layout_weight="0"/>
 
     </LinearLayout>
 </FrameLayout>

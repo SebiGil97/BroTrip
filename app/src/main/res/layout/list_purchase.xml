@@ -4,6 +4,14 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" android:id="@+id/list_purchase_checkBox_delete"
+                android:layout_weight="0"/>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -15,23 +23,20 @@
 
             <TextView
                     android:id="@+id/list_purchase_textView_shop"
-                    android:layout_width="270dp"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:text="TextView"
+                    android:layout_marginLeft="30dp"
                     android:textSize="24sp"/>
 
             <TextView
-                    android:text="€"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" android:id="@+id/list_purchase_textView_euro"
-                    android:layout_weight="1"
-                    android:textSize="24sp"/>
-            <TextView
                     android:id="@+id/list_purchase_textView_price"
-                    android:layout_width="80dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:layout_marginRight="30dp"
                     android:text="TextView"
+                    android:gravity="right"
                     android:textSize="24sp"/>
 
         </LinearLayout>
@@ -42,21 +47,28 @@
                 android:layout_height="wrap_content">
             <TextView
                     android:text="paid by "
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content" android:id="@+id/list_purchase_textView_paidBy"
-                    android:textSize="18sp"/>
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/list_purchase_textView_paidBy"
+                    android:layout_marginLeft="30dp"
+                    android:textSize="18sp" android:layout_weight="0"/>
             <TextView
                     android:text="TextView"
                     android:layout_width="350dp"
-                    android:layout_height="wrap_content" android:id="@+id/list_purchase_textView_payer"
-                    android:layout_weight="1" android:textSize="18sp"/>
+                    android:layout_height="wrap_content"
+                    android:id="@+id/list_purchase_textView_payer"
+                    android:layout_weight="1"
+                    android:textSize="18sp"/>
         </LinearLayout>
         <TextView
             android:id="@+id/list_purchase_textView_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:layout_marginRight="30dp"
+            android:gravity="right"
             android:textSize="18sp" />
 
+    </LinearLayout>
     </LinearLayout>
 </FrameLayout>

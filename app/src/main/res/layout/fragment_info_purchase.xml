@@ -5,11 +5,25 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.FragmentInfoPurchase">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <ListView
-        android:id="@+id/fragment_info_purchase_listView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="30dp">
+        <ListView
+                android:id="@+id/fragment_info_purchase_listView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+        <ImageButton
+                android:src="@drawable/brotrip_icon_trash_white_50"
+                android:text="Button"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/fragment_info_purchase_imageButton_delete"
+                android:layout_weight="0"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_gravity="center_horizontal" android:visibility="gone"/>
+    </LinearLayout>
 </FrameLayout>

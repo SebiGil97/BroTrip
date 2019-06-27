@@ -31,6 +31,7 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
     List<Purchase> purchaseList;
     List<Refuel> refuelList;
     List<Trip> tripList;
+    float maxMileage;
 
     //firebase
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -70,7 +71,7 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
         myRefPurchase = database.getReference(currentTrip.getmTripTitle()+"Purchase");
         myRefRefuel = database.getReference(currentTrip.getmTripTitle()+"Refuel");
 
-
+        //---------- set title --------
         TextView title = (TextView) findViewById(R.id.activity_active_trip_textView_title);
         title.setText(currentTrip.getTripTitle());
         title.setTextColor(Color.WHITE);
@@ -145,6 +146,12 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
         };
         myRefRefuel.addListenerForSingleValueEvent(refuelListener);
 
+        if(refuelList.size() == 0){
+            maxMileage = currentTrip.getmMileage();
+        }else{
+            maxMileage = refuelList.get(refuelList.size()-1).getmDrivenKilometers();
+        }
+
     }
 
     @Override
@@ -153,14 +160,15 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
             case R.id.activity_active_trip_imageButton_shopping: {
                 Log.i(TAG, "activity_active_trip_shopping pressed!");
                 Intent i = new Intent(ActivityActiveTrip.this, ActivityPurchase.class);
-                i.putExtra("purchasePerson", (Serializable)currentTrip.getmPersons());
+                i.putExtra("purchasePerson", (Serializable)currentTripFirebase.getmPersons());
                 startActivityForResult(i, 2);
             }
             break;
             case R.id.activity_active_trip_imageButton_refuel: {
                 Log.i(TAG, "activity_active_trip_refuel pressed!");
                 Intent i = new Intent(ActivityActiveTrip.this, ActivityRefuel.class);
-                i.putExtra("purchasePerson", (Serializable)currentTrip.getmPersons());
+                i.putExtra("purchasePerson", (Serializable)currentTripFirebase.getmPersons());
+                i.putExtra("maxMileage", (Serializable)maxMileage);
                 startActivityForResult(i, 1);
             }
             break;
@@ -172,7 +180,7 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
             case R.id.activity_active_trip_imageButton_info: {
                 Log.i(TAG, "activity_active_trip_statistics pressed!");
                 Intent i = new Intent(ActivityActiveTrip.this, ActivityInfo.class);
-                i.putExtra("infoTrip", (Serializable)currentTrip);
+                i.putExtra("infoTrip", (Serializable)currentTripFirebase);
                 startActivity(i);
             }
             break;
@@ -203,6 +211,8 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
                 Toast.makeText(this, "added new Refuel", Toast.LENGTH_SHORT).show();
                 refuelList.add(newRefuel);
                 myRefRefuel.setValue(refuelList); //save to firebase
+
+                maxMileage = newRefuel.getmDrivenKilometers();
 
                 List<Person> p = currentTripFirebase.getmPersons();
                 for(int i = 0;i < p.size();i++){
@@ -235,4 +245,24 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
 
 
     }//onActivityResult
+
+    /*
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        LinkedList<Refuel> deletedRefuels = (LinkedList<Refuel>) getIntent().getExtras().getSerializable("deletedRefuels");
+        if(deletedRefuels != null && deletedRefuels.size() > 0){
+            for(int i = 0;i < deletedRefuels.size();i++){
+                for(int j = 0;j < currentTripFirebase.getmPersons().size();j++){
+                    if(deletedRefuels.get(i).getmPayer() == currentTripFirebase.getmPersons().get(j).getmName()){
+                        currentTripFirebase.getmPersons().get(j).deleteRefuel(deletedRefuels.get(i));
+                    }
+                }
+            }
+        }
+        myRefTrip.setValue(tripList);
+    }
+*/
+
 }

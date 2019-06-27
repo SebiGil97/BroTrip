@@ -29,10 +29,22 @@ public class Person implements Serializable {
         mNumberRefuel++;
     }
 
+    public void deleteRefuel(Refuel r){
+        mExpenditures = mExpenditures - r.getmCosts();
+        mExpRefuel = mExpRefuel - r.getmCosts();
+        mNumberRefuel--;
+    }
+
     public void addPurchase(Purchase p){
         mExpenditures = mExpenditures + p.getmCosts();
         mExpPurchase = mExpPurchase + p.getmCosts();
         mNumberPurchase++;
+    }
+
+    public void deletePurchase(Purchase p){
+        mExpenditures = mExpenditures - p.getmCosts();
+        mExpPurchase = mExpPurchase - p.getmCosts();
+        mNumberPurchase--;
     }
 
     public void calcSurplus(double total, int numPerson){

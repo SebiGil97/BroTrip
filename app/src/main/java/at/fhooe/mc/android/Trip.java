@@ -9,18 +9,23 @@ import java.util.ListIterator;
 public class Trip implements Serializable{
     private String mTripTitle;
     private String mCar;
-    private double mMileage;                   // Mileage of the car when the trip starts
+    private float mMileage;                   // Mileage of the car when the trip starts
+
     private int mNumberOfPersons;
     private List<Person> mPersons;
+
     private double mExpPurTotal;
     private double mExpRefTotal;
     private double mExpTotal;
+
+    boolean delete;
+    boolean readyDelete;
 
 
     public Trip() {
     }
 
-    public Trip (String title, String car, int _mileage, LinkedList<Person> persons){
+    public Trip (String title, String car, float _mileage, LinkedList<Person> persons){
         mTripTitle = title;
         mCar = car;
         mMileage = _mileage;
@@ -30,6 +35,9 @@ public class Trip implements Serializable{
         mExpPurTotal = 0;
         mExpRefTotal = 0;
         mExpTotal = 0;
+
+        delete=false;
+        readyDelete=false;
     }
 
     public void addRefuel(Refuel r){
@@ -75,7 +83,7 @@ public class Trip implements Serializable{
         this.mCar = mCar;
     }
 
-    public double getmMileage() {
+    public float getmMileage() {
         return mMileage;
     }
 
@@ -121,5 +129,21 @@ public class Trip implements Serializable{
 
     public void setmExpTotal(double mExpTotal) {
         this.mExpTotal = mExpTotal;
+    }
+
+    public boolean isDelete() {
+        return delete;
+    }
+
+    public void setDelete(boolean delete) {
+        this.delete = delete;
+    }
+
+    public boolean isReadyDelete() {
+        return readyDelete;
+    }
+
+    public void setReadyDelete(boolean readyDelete) {
+        this.readyDelete = readyDelete;
     }
 }
