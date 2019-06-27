@@ -32,7 +32,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("myTrips");
     ValueEventListener downloadListener;
-
+    //hallo
 
 
     @Override
@@ -44,6 +44,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         ImageButton ib = null;
         ib = (ImageButton) findViewById(R.id.activity_main_imageButton_new_trip);
         ib.setOnClickListener(this);
+
 
 
         tripList = new LinkedList<Trip>();
