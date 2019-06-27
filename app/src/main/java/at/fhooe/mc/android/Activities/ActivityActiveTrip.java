@@ -246,23 +246,5 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
 
     }//onActivityResult
 
-    /*
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        LinkedList<Refuel> deletedRefuels = (LinkedList<Refuel>) getIntent().getExtras().getSerializable("deletedRefuels");
-        if(deletedRefuels != null && deletedRefuels.size() > 0){
-            for(int i = 0;i < deletedRefuels.size();i++){
-                for(int j = 0;j < currentTripFirebase.getmPersons().size();j++){
-                    if(deletedRefuels.get(i).getmPayer() == currentTripFirebase.getmPersons().get(j).getmName()){
-                        currentTripFirebase.getmPersons().get(j).deleteRefuel(deletedRefuels.get(i));
-                    }
-                }
-            }
-        }
-        myRefTrip.setValue(tripList);
-    }
-*/
 
 }

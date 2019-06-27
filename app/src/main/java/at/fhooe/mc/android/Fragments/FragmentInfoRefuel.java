@@ -35,12 +35,17 @@ public class FragmentInfoRefuel extends Fragment implements OnBackPressedListene
     private static final String VALUE_KEY = "FragmentDeleteBoolean";
 
     Trip currentTrip;
+    Trip currentTripFirebase;
     private List<Refuel> refuels;
+    private List<Trip> tripList;
     InfoRefuelAdapter adapter;
     boolean deleteON;
 
+
     //firebase
     FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRefTrip;
+    ValueEventListener tripListener;
     DatabaseReference myRefRefuel;
 
     @Override
@@ -51,8 +56,37 @@ public class FragmentInfoRefuel extends Fragment implements OnBackPressedListene
         currentTrip = (Trip) i.getSerializableExtra("currentTrip");
 
         //Intalize List
+        tripList = new LinkedList<Trip>();
         refuels = new LinkedList<Refuel>();
 
+        //firebase Trip
+        myRefTrip = database.getReference("myTrips");
+        tripListener = new ValueEventListener() { //addListenerForSingleValueEvent
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+
+                List<Trip> tripListRestore = dataSnapshot.getValue(new GenericTypeIndicator<List<Trip>>() {});
+                if(tripListRestore!=null){
+                    tripList=tripListRestore;
+                }
+
+                for(int i = 0;i < tripList.size();i++){
+                    if(tripList.get(i).getTripTitle().equals(currentTrip.getTripTitle())){
+                        currentTripFirebase = tripList.get(i);
+                    }
+                }
+                //Toast.makeText(ActivityActiveTrip.this, "currentTripFirebase: " + currentTripFirebase.getTripTitle(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        };
+        myRefTrip.addListenerForSingleValueEvent(tripListener);
 
         //------------Firebase-------------------------------
         //Referenze for firebase
@@ -113,9 +147,20 @@ public class FragmentInfoRefuel extends Fragment implements OnBackPressedListene
                 myRefRefuel.setValue(refuels);
             }
         });
+/*
+        if(deletedRefuels != null && deletedRefuels.size() > 0){
+            for(int i = 0;i < deletedRefuels.size();i++){
+                for(int j = 0;j < currentTripFirebase.getmPersons().size();j++){
+                    if(deletedRefuels.get(i).getmPayer().equals(currentTripFirebase.getmPersons().get(j))){
+                        currentTripFirebase.getmPersons().get(j).deleteRefuel(deletedRefuels.get(i));
+                    }
+                }
+            }
+        }
+        myRefTrip.setValue(tripList);
 
-        getActivity().getIntent().putExtra("deletedRefuels",deletedRefuels);
-
+        deletedRefuels.clear();
+*/
                 //---------- Dynamic List ----------
         ListView lv = (ListView) view.findViewById(R.id.fragment_info_refuel_listView);
         adapter = new InfoRefuelAdapter(getActivity());

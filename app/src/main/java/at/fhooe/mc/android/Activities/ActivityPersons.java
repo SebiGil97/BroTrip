@@ -24,6 +24,7 @@ public class ActivityPersons extends Activity {
     Trip currentTripFirebase;
     Trip currentTrip;
     List<Trip> tripList;
+    List<Person> persons;
 
     //firebase
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -36,7 +37,7 @@ public class ActivityPersons extends Activity {
         setContentView(R.layout.activity_persons);
 
         currentTrip = (Trip) getIntent().getExtras().getSerializable("persons");
-        /*
+/*
         tripList = new LinkedList<Trip>();
         myRefTrip = database.getReference("myTrips");
 
@@ -57,7 +58,6 @@ public class ActivityPersons extends Activity {
                         currentTripFirebase = tripList.get(i);
                     }
                 }
-                Toast.makeText(ActivityPersons.this, "current: " + currentTripFirebase.getTripTitle(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -65,15 +65,17 @@ public class ActivityPersons extends Activity {
                 // Failed to read value
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
+
         };
         myRefTrip.addListenerForSingleValueEvent(tripListener);
 */
         ListView lv = (ListView) findViewById(R.id.activity_persons_listView);
 
         PersonAdapter adapter = new PersonAdapter(this);
-        List<Person> persons = currentTrip.getmPersons();
 
-        for(int i = 0;i < persons.size();i++){
+        persons = currentTrip.getmPersons();
+
+        for(int i = 0;i < persons.size();i++) {
             adapter.add(persons.get(i));
         }
 

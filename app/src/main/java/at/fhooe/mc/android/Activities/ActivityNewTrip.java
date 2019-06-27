@@ -112,7 +112,7 @@ public class ActivityNewTrip extends Activity implements View.OnClickListener{
                 }else if( persons.size() < 1){ // editText name is empty
                     Toast.makeText(this, "please enter persons", Toast.LENGTH_SHORT).show();
                 }else {
-                    Toast.makeText(this, "new trip saved", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "trip " + tripTitle +  " saved", Toast.LENGTH_SHORT).show();
 
                     String p = mileage.getText().toString();
                     changeDotToComma(p);
