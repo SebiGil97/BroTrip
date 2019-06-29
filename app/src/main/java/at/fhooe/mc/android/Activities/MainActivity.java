@@ -15,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -119,6 +120,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             case R.id.activity_main_imageButton_new_trip : {
                 Intent i = new Intent(this, ActivityNewTrip.class);
+                i.putExtra("tripList",(Serializable)tripList);
                 startActivityForResult(i, 1);
             } break;
             case R.id.activity_main_imageButton_delete:

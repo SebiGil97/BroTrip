@@ -28,6 +28,8 @@ public class ActivityNewTrip extends Activity implements View.OnClickListener{
     public int mNumberOfPersons = 0;
     public String[] mPersonList = new String[]{};
     private LinkedList<Person> persons;
+    public List<Trip> tripList;
+    public boolean sameTrip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +47,16 @@ public class ActivityNewTrip extends Activity implements View.OnClickListener{
         b = (Button) findViewById(R.id.new_trip_button_save);
         b.setOnClickListener(this);
 
+        sameTrip=false;
+
         persons = new LinkedList<Person>();
 
         ListView lv = (ListView) findViewById(R.id.new_trip_listView_persons);
         PersonArrayList = new ArrayList<String>(Arrays.asList(mPersonList));
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, PersonArrayList);
         lv.setAdapter(adapter);
+
+        tripList = (List<Trip>)getIntent().getSerializableExtra("tripList");
     }
 
     @Override
@@ -101,7 +107,12 @@ public class ActivityNewTrip extends Activity implements View.OnClickListener{
                 String tripCar = car.getText().toString();
                 EditText mileage = (EditText)findViewById(R.id.new_trip_editText_mileage);
 
-
+                //check for same name
+                for(int i=0;i<tripList.size();i++){
+                    if(tripList.get(i).getmTripTitle().equals(tripTitle)){
+                        sameTrip=true;
+                    }
+                }
                 //---------- check input ----------
                 if(tripTitle.isEmpty()){ // editText name is empty
                     Toast.makeText(this, "please enter a title", Toast.LENGTH_SHORT).show();
@@ -109,10 +120,14 @@ public class ActivityNewTrip extends Activity implements View.OnClickListener{
                     Toast.makeText(this, "please enter a car", Toast.LENGTH_SHORT).show();
                 }else if( mileage.getText().toString().equals("")){ // editText name is empty
                     Toast.makeText(this, "please enter mileage", Toast.LENGTH_SHORT).show();
-                }else if( persons.size() < 1){ // editText name is empty
+                }else if( persons.size() < 1) { // editText name is empty
                     Toast.makeText(this, "please enter persons", Toast.LENGTH_SHORT).show();
+                } else if(sameTrip){ // editText name is empty
+                        Toast.makeText(this, tripTitle + " already exist, please choose another titel!", Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(this, "trip " + tripTitle +  " saved", Toast.LENGTH_SHORT).show();
+
+
 
                     String p = mileage.getText().toString();
                     changeDotToComma(p);
@@ -131,6 +146,7 @@ public class ActivityNewTrip extends Activity implements View.OnClickListener{
 
             default : Log.e(TAG, "unexpected ID encountered");
         }
+        sameTrip=false;
     }
 
     private void changeDotToComma(String s){

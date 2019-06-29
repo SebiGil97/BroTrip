@@ -74,7 +74,7 @@ public class ActivityRefuel extends Activity implements View.OnClickListener, Ad
                 }else if(price.getText().toString().equals("")){
                     Toast.makeText(this, "please enter a price", Toast.LENGTH_SHORT).show();
                 }else if(liter.getText().toString().equals("")){
-                    Toast.makeText(this, "please enter an amout of liters", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "please enter an amount of liters", Toast.LENGTH_SHORT).show();
                 }else if( refuelPayer.equals("select a payer")){
                     Toast.makeText(this, "please select a payer", Toast.LENGTH_SHORT).show();
                 }else {

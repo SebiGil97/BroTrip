@@ -23,6 +23,7 @@ import at.fhooe.mc.android.R;
 import com.google.firebase.database.*;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
 
 import static at.fhooe.mc.android.Activities.MainActivity.TAG;
@@ -76,6 +77,8 @@ public class ActivityInfo extends Activity implements View.OnClickListener {
                 List<Purchase> purchasesRestore = dataSnapshot.getValue(new GenericTypeIndicator<List<Purchase>>() {});
                 if(purchasesRestore!=null){
                     purchases=purchasesRestore;
+                }else{
+                    purchases=new LinkedList<Purchase>();
                 }
             }
 
@@ -86,7 +89,7 @@ public class ActivityInfo extends Activity implements View.OnClickListener {
             }
         };
 
-        myRefPurchase.addListenerForSingleValueEvent(purchaseListener);
+        myRefPurchase.addValueEventListener(purchaseListener);
 
 
         //---------- get refuelList from firebase ----------
@@ -101,6 +104,8 @@ public class ActivityInfo extends Activity implements View.OnClickListener {
                 List<Refuel> refuelRestore = dataSnapshot.getValue(new GenericTypeIndicator<List<Refuel>>() {});
                 if(refuelRestore!=null){
                     refuels = refuelRestore;
+                }else{
+                    refuels=new LinkedList<Refuel>();
                 }
             }
 
@@ -112,7 +117,7 @@ public class ActivityInfo extends Activity implements View.OnClickListener {
             }
 
         };
-        myRefRefuel.addListenerForSingleValueEvent(refuelListener);
+        myRefRefuel.addValueEventListener(refuelListener);
 
         getIntent().putExtra("CurrentTrip", currentTrip);
 
