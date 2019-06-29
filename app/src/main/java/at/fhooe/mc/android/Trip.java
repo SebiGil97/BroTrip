@@ -52,6 +52,18 @@ public class Trip implements Serializable{
         calcPersonSurplus(mExpTotal,getmPersons().size());
     }
 
+    public void deleteRefuel(Refuel r){
+        mExpRefTotal = mExpRefTotal - r.getmCosts();
+        mExpTotal = mExpTotal - r.getmCosts();
+        calcPersonSurplus(mExpTotal,getmPersons().size());
+    }
+
+    public void deletePurchase(Purchase p){
+        mExpPurTotal = mExpPurTotal - p.getmCosts();
+        mExpTotal = mExpTotal - p.getmCosts();
+        calcPersonSurplus(mExpTotal,getmPersons().size());
+    }
+
     public void calcPersonSurplus(double total, int numPerson){
         for(int i = 0;i < numPerson;i++){
             getmPersons().get(i).calcSurplus(total,numPerson);

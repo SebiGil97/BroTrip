@@ -102,7 +102,7 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         };
-        myRefTrip.addListenerForSingleValueEvent(tripListener);
+        myRefTrip.addValueEventListener(tripListener);
 
         //firebase Purchase
         purchaseListener =new ValueEventListener() { //addListenerForSingleValueEvent
@@ -188,6 +188,8 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
                 Log.i(TAG, "activity_active_trip_person pressed!");
                 Intent i = new Intent(ActivityActiveTrip.this, ActivityPersons.class);
                 i.putExtra("persons", (Serializable)currentTripFirebase);
+             //   i.putExtra("refuelList", (Serializable)refuelList);
+              //  i.putExtra("purchaseList", (Serializable)purchaseList);
                 startActivity(i);
             }
             break;

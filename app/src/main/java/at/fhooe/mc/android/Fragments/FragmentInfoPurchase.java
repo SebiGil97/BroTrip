@@ -43,6 +43,10 @@ public class FragmentInfoPurchase extends Fragment implements OnBackPressedListe
     //firebase
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRefPurchase;
+    DatabaseReference myRefTrip;
+    ValueEventListener tripListener;
+    Trip currentTripFirebase;
+    public List<Trip> tripList;
 
     @Override
     public void onCreate(Bundle _savedInstanceState) {
@@ -50,6 +54,7 @@ public class FragmentInfoPurchase extends Fragment implements OnBackPressedListe
 
         Intent i = getActivity().getIntent();
         currentTrip = (Trip) i.getSerializableExtra("currentTrip");
+
 
         //Intalize List
         purchases = new LinkedList<Purchase>();
@@ -81,6 +86,37 @@ public class FragmentInfoPurchase extends Fragment implements OnBackPressedListe
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
+
+        //firebase Trip
+        myRefTrip = database.getReference("myTrips");
+        tripListener = new ValueEventListener() { //addListenerForSingleValueEvent
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+
+                List<Trip> tripListRestore = dataSnapshot.getValue(new GenericTypeIndicator<List<Trip>>() {});
+                if(tripListRestore!=null){
+                    tripList=tripListRestore;
+                }
+
+                for(int i = 0;i < tripList.size();i++){
+                    if(tripList.get(i).getTripTitle().equals(currentTrip.getTripTitle())){
+                        currentTripFirebase = tripList.get(i);
+                    }
+                }
+                //Toast.makeText(ActivityActiveTrip.this, "currentTripFirebase: " + currentTripFirebase.getTripTitle(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        };
+        myRefTrip.addListenerForSingleValueEvent(tripListener);
+
+
     }
 
     @Override
@@ -99,6 +135,15 @@ public class FragmentInfoPurchase extends Fragment implements OnBackPressedListe
                 //removes checked items from list
                 for(int i=0; i<purchases.size();i++){
                     if(purchases.get(i).isReadyDelete()){
+
+                        //detect Person to delete Purchase from Person
+                        for(int y=0;y < currentTripFirebase.getmPersons().size();y++){
+                            if(purchases.get(i).getmPayer().equals(currentTripFirebase.getmPersons().get(y).getmName())){
+                                currentTripFirebase.getmPersons().get(y).deletePurchase(purchases.get(i));
+                                currentTripFirebase.deletePurchase(purchases.get(i));
+                            }
+                        }
+
                         adapter.remove(purchases.get(i));
                         purchases.remove(i);
                         i--;
@@ -107,6 +152,12 @@ public class FragmentInfoPurchase extends Fragment implements OnBackPressedListe
                 adapter.notifyDataSetChanged();
                 closeDeleteMode();
                 myRefPurchase.setValue(purchases);
+                for(int i = 0;i < tripList.size();i++){
+                    if(tripList.get(i).getTripTitle().equals(currentTrip.getTripTitle())){
+                       tripList.set(i,currentTripFirebase);
+                    }
+                }
+                myRefTrip.setValue(tripList);
             }
         });
 

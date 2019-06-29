@@ -25,6 +25,8 @@ public class ActivityPersons extends Activity {
     Trip currentTrip;
     List<Trip> tripList;
     List<Person> persons;
+    List<Refuel> refuelList;
+    List<Purchase> purchaseList;
 
     //firebase
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -37,6 +39,28 @@ public class ActivityPersons extends Activity {
         setContentView(R.layout.activity_persons);
 
         currentTrip = (Trip) getIntent().getExtras().getSerializable("persons");
+      /*  refuelList = (List<Refuel>) getIntent().getExtras().getSerializable("refuelList");
+        purchaseList = (List<Purchase>) getIntent().getExtras().getSerializable("purchaseList");
+
+        for(int i=0;i<currentTrip.getmPersons().size();i++){
+            currentTrip.getmPersons().get(i).setmExpenditures(0);
+            currentTrip.getmPersons().get(i).setmExpPurchase(0);
+            currentTrip.getmPersons().get(i).setmExpRefuel(0);
+            currentTrip.getmPersons().get(i).setmNumberRefuel(0);
+            currentTrip.getmPersons().get(i).setmNumberPurchase(0);
+
+            for(int y=0;y<refuelList.size();y++){
+                if(refuelList.get(y).getmPayer().equals(currentTrip.getmPersons().get(i).getmName())){
+                    currentTrip.getmPersons().get(i).addRefuel(refuelList.get(y));
+                }
+            }
+            for(int y=0;y<purchaseList.size();y++){
+                if(purchaseList.get(y).getmPayer().equals(currentTrip.getmPersons().get(i).getmName())){
+                    currentTrip.getmPersons().get(i).addPurchase(purchaseList.get(y));
+                }
+            }
+
+        } */
 /*
         tripList = new LinkedList<Trip>();
         myRefTrip = database.getReference("myTrips");

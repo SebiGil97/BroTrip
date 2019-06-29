@@ -42,11 +42,13 @@ public class FragmentInfoRefuel extends Fragment implements OnBackPressedListene
     boolean deleteON;
 
 
+
     //firebase
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRefTrip;
     ValueEventListener tripListener;
     DatabaseReference myRefRefuel;
+
 
     @Override
     public void onCreate(Bundle _savedInstanceState) {
@@ -114,6 +116,8 @@ public class FragmentInfoRefuel extends Fragment implements OnBackPressedListene
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
+
+
     }
 
     @Override
@@ -122,7 +126,7 @@ public class FragmentInfoRefuel extends Fragment implements OnBackPressedListene
         // Inflate the layout for this fragment
         final View view = _inflater.inflate(R.layout.fragment_info_refuel, _container, false);
 
-        final LinkedList<Refuel> deletedRefuels = new LinkedList(); // to update person statistsics
+        //final LinkedList<Refuel> deletedRefuels = new LinkedList(); // to update person statistsics
 
         ImageButton ib = null;
         ib = (ImageButton) view.findViewById(R.id.fragment_info_refuel_imageButton_delete);
@@ -136,7 +140,15 @@ public class FragmentInfoRefuel extends Fragment implements OnBackPressedListene
                 //removes checked items from list
                 for(int i=0; i<refuels.size();i++){
                     if(refuels.get(i).isReadyDelete()){
-                        deletedRefuels.add(refuels.get(i));
+                       // deletedRefuels.add(refuels.get(i));
+                        //detect Person to delete Purchase from Person
+                        for(int y=0;y < currentTripFirebase.getmPersons().size();y++){
+                            if(refuels.get(i).getmPayer().equals(currentTripFirebase.getmPersons().get(y).getmName())){
+                                currentTripFirebase.getmPersons().get(y).deleteRefuel(refuels.get(i));
+                                currentTripFirebase.deleteRefuel(refuels.get(i));
+                            }
+                        }
+
                         adapter.remove(refuels.get(i));
                         refuels.remove(i);
                         i--;
@@ -145,6 +157,12 @@ public class FragmentInfoRefuel extends Fragment implements OnBackPressedListene
                 adapter.notifyDataSetChanged();
                 closeDeleteMode();
                 myRefRefuel.setValue(refuels);
+                for(int i = 0;i < tripList.size();i++){
+                    if(tripList.get(i).getTripTitle().equals(currentTrip.getTripTitle())){
+                        tripList.set(i,currentTripFirebase);
+                    }
+                }
+                myRefTrip.setValue(tripList);
             }
         });
 /*

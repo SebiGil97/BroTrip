@@ -29,6 +29,12 @@ public class Person implements Serializable {
         mNumberRefuel++;
     }
 
+    public void addNewRefuel(double Costs,int num){
+        mExpenditures =Costs;
+        mExpRefuel = Costs;
+        mNumberRefuel = num;
+    }
+
     public void deleteRefuel(Refuel r){
         mExpenditures = mExpenditures - r.getmCosts();
         mExpRefuel = mExpRefuel - r.getmCosts();
@@ -39,6 +45,11 @@ public class Person implements Serializable {
         mExpenditures = mExpenditures + p.getmCosts();
         mExpPurchase = mExpPurchase + p.getmCosts();
         mNumberPurchase++;
+    }
+
+    public void addNewPurchase(double Costs,int num){
+        mExpPurchase = Costs;
+        mNumberPurchase = num;
     }
 
     public void deletePurchase(Purchase p){
