@@ -69,7 +69,7 @@ public class ActivityRefuel extends Activity implements View.OnClickListener, Ad
                 //--------- check input ------------
                 if(mileage.getText().toString().equals("")){
                     Toast.makeText(this, "please enter a mileage", Toast.LENGTH_SHORT).show();
-                }else if(Float.parseFloat(mileage.getText().toString()) < maxMileage){
+                }else if(Float.parseFloat(mileage.getText().toString()) < maxMileage+1){
                     Toast.makeText(this, "last mileage was " + maxMileage, Toast.LENGTH_SHORT).show();
                 }else if(price.getText().toString().equals("")){
                     Toast.makeText(this, "please enter a price", Toast.LENGTH_SHORT).show();
