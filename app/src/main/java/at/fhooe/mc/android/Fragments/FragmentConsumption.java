@@ -118,7 +118,7 @@ public class FragmentConsumption extends Fragment implements OnBackPressedListen
         if(trend == 3) {
             tv.setText("Well done! Keep it up!");
             tv.setTextColor(Color.GREEN);
-            iv.setImageResource(R.drawable.icon_green_arrow_up_225);
+            iv.setImageResource(R.drawable.icon_green_arrow_up);
         }else if(trend == 1) {
             tv.setText("You can do that better!");
             tv.setTextColor(Color.RED);
