@@ -165,6 +165,11 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
             }
             break;
             case R.id.activity_active_trip_imageButton_refuel: {
+                if(refuelList.size() == 0){
+                    maxMileage = currentTrip.getmMileage();
+                }else{
+                    maxMileage = refuelList.get(refuelList.size()-1).getmDrivenKilometers();
+                }
                 Log.i(TAG, "activity_active_trip_refuel pressed!");
                 Intent i = new Intent(ActivityActiveTrip.this, ActivityRefuel.class);
                 i.putExtra("purchasePerson", (Serializable)currentTripFirebase.getmPersons());
