@@ -172,6 +172,7 @@ public class ActivityActiveTrip extends Activity implements View.OnClickListener
                 }
                 Log.i(TAG, "activity_active_trip_refuel pressed!");
                 Intent i = new Intent(ActivityActiveTrip.this, ActivityRefuel.class);
+
                 i.putExtra("purchasePerson", (Serializable)currentTripFirebase.getmPersons());
                 i.putExtra("maxMileage", (Serializable)maxMileage);
                 startActivityForResult(i, 1);
